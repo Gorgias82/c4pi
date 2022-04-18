@@ -10,6 +10,7 @@ import { Departamento } from '../shared/departamento.model';
 })
 export class LoginService {
 
+  private nombre !: string;
   private departamentos!: Departamento[];
   private DepartamentoUpdated = new Subject<Departamento[]>();
   private hoteles!: Hotel[];
@@ -22,6 +23,12 @@ export class LoginService {
   private respuestaEmpleado !: boolean;
   constructor(private http : HttpClient) { }
 
+  get data() : string{
+    return this.nombre;
+  }
+  set data(val: string){
+    this.nombre = val;
+  }
 getHoteles(){
   this.http.get<Hotel[]>('http://localhost:3000/hoteles')
   .subscribe(
@@ -50,7 +57,7 @@ getHotelUpdateListener(){
   return this.hotelUpdated.asObservable();
 }
 
-getLoginUpdatedListener(){
+ getLoginUpdatedListener(){
   return this.loginUpdated.asObservable();
 }
 getPasswordUpdatedListener(){

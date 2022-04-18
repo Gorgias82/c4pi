@@ -38,8 +38,8 @@ CREATE TABLE c4pi.empleados
 (id SMALLINT UNSIGNED not null AUTO_INCREMENT
 ,id_departamento SMALLINT UNSIGNED not null	
 ,rango TINYINT(1) not null												
-,login VARCHAR(20)
-,password VARCHAR(80) 
+,login VARCHAR(20) unique
+,password VARCHAR(80) not null
 ,primary key (id)
 ,foreign key (id_departamento) REFERENCES departamentos(id));
 

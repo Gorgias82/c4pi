@@ -1,6 +1,6 @@
 import { Component, Injectable,  OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, throwIfEmpty } from 'rxjs';
 import { Hotel } from '../../shared/hotel.model';
 import { LoginService } from '../login.service';
 
@@ -46,21 +46,48 @@ export class LoginCardComponent implements OnInit {
     this.color = this.colores[n];
   }
 
-  onSubmit(){
+  public getNombre() : string{
+    return this.nombre;
+  }
+
+   mandarNombre(){
     this.loginservice.sendLogin({envio : this.nombre});
     this.loginSub = this.loginservice.getLoginUpdatedListener()
     .subscribe((message : boolean) =>{
+      alert("respuesta de bd nombre " + message);
+      
       this.errorNombre = !message;
+    
     })
+  }
+   mandarPassword(){
     this.loginservice.sendPassword({nombre: this.nombre, password : this.password});
     this.passwordSub = this.loginservice.getPasswordUpdatedListener()
     .subscribe((message : boolean) =>{
+      alert("respuesta de bd password " + message);
       this.errorPassword = !message;
+      
     })
-    if(!this.errorNombre && this.errorPassword){
+  }
+
+ async onSubmit(){
+    this.mandarNombre();
+    if(!this.errorNombre){   
+     this.mandarPassword();
+    }
+  
+    setTimeout(() => { this.redireccionar(); },1000);
+    
+
+  }
+ redireccionar(){
+  //  alert("redireccionar error nombre " + this.errorNombre + " error password " + this.errorPassword);
+     if(this.errorNombre === false && this.errorPassword === false){
+      alert("funcion nombre dentro comprobacion " + this.errorNombre + " password " + this.errorPassword);
+      this.loginservice.data = this.nombre;
       this.router.navigate(['/home/main']);
     
-    }
+     }
   }
 
 }

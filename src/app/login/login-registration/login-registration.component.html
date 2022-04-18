@@ -56,10 +56,13 @@
 
                     <mat-card-footer>
                         <p *ngIf="errorNombre" class="error">Ese nombre de usuario ya existe, debe escoger otro</p>
-                        <p *ngIf="errorPassword" class="error">Debe introducir alguna contraseña dos veces</p>
+                        <p *ngIf="errorPassword" class="error">Debe introducir la misma contraseña dos veces</p>
                         <p *ngIf="nombreVacio" class="error">Debe introducir algun nombre de
                             usuario</p>
-                        <p *ngIf="errorInsercionEmpleado"> No se ha podido insertar el empleado correctamente</p>
+                        <p *ngIf="errorInsercionEmpleado" class="error"> No se ha podido insertar el empleado
+                            correctamente</p>
+                        <p *ngIf="errorHotel" class="error">Debe seleccionar algún hotel</p>
+                        <p *ngIf="errorDepartamento" class="error">Debe seleccionar algún departamento</p>
                     </mat-card-footer>
                 </mat-card>
             </form>

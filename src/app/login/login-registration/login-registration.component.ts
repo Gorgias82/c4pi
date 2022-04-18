@@ -19,6 +19,8 @@ export class LoginRegistrationComponent implements OnInit {
   private empSub!: Subscription;
   errorNombre!: boolean;
   nombreVacio!: boolean;
+  errorHotel!: boolean;
+  errorDepartamento!: boolean;
   hoteles!: Hotel[];
   password !: string;
   password2 !: string;
@@ -59,9 +61,6 @@ export class LoginRegistrationComponent implements OnInit {
   }
 
   onSubmit(){
-    this.nombreVacio = true;
-    this.errorPassword = true;
-    this.errorNombre = false;
     if(this.nombre !== undefined ){
       if(this.nombre.length > 0){
         this.nombreVacio = false;
@@ -77,12 +76,20 @@ export class LoginRegistrationComponent implements OnInit {
         this.errorPassword = this.password == this.password2 ? false : true;
       }
     }
-    if(!this.nombreVacio && !this.errorPassword && !this.errorNombre && this.selectedHotel != undefined && this.selectedDepartamento != undefined){
-      alert("ok");
-      this.insertaEmpleado();
-      if(!this.errorInsercionEmpleado){
-        this.router.navigate(['/home/main']);
-      }
+    this.errorNombre = this.errorNombre === undefined ? true: false;
+    this.errorHotel = this.selectedHotel === undefined? true:false;
+    this.errorDepartamento = this.selectedDepartamento === undefined? true:false;
+
+    // alert("dentro funcion submit nombre vacio " + this.nombreVacio + " error password " + this.errorPassword  + " error nombre " + this.errorNombre + " error hotel " + this.errorHotel + " error departamento " + this.errorDepartamento);
+    if(this.nombreVacio ===false && this.errorPassword === false && this.errorNombre === false && this.errorHotel === false && this.errorDepartamento === false){
+    // alert("dentro comprobaciones submit nombre vacio " + this.nombreVacio + " error password " + this.errorPassword  + " error nombre " + this.errorNombre + " error hotel " + this.errorHotel + " error departamento " + this.errorDepartamento);
+      this.insertaEmpleado();  
+      this.loginService.data = this.nombre;
+      this.router.navigate(['/home/main']);
+      // alert("error insercion empleado " + this.errorInsercionEmpleado);
+      // if(this.errorInsercionEmpleado === false){
+        
+      // }
     }
    
     
