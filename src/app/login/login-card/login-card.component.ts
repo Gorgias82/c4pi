@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, throwIfEmpty } from 'rxjs';
@@ -13,6 +14,8 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login-card.component.css'],
 })
 export class LoginCardComponent implements OnInit {
+  theme !: string;
+  themes !: Array<string>
   color: string;
   colores: Array<string>;
   palabrasTotales: Array<Array<String>>;
@@ -63,6 +66,7 @@ export class LoginCardComponent implements OnInit {
         'Críticos',
       ],
     ];
+    this.themes = ['red-theme','green-theme','blue-theme','yellow-theme']
   }
 
   ngOnInit() {
@@ -82,6 +86,7 @@ export class LoginCardComponent implements OnInit {
     let n = Math.floor(Math.random() * this.colores.length);
     this.color = this.colores[n];
     this.palabrasColor = this.palabrasTotales[n];
+    this.theme = this.themes[n];
     switch (n) {
       case 0:
         this.colorFuente = '#F7F9F9';
@@ -98,14 +103,7 @@ export class LoginCardComponent implements OnInit {
         default:
           break;
     }
-    this.visibilidad = 'hidden';
-    this.visibilidad = 'visible';
-    // if (n == 0 || n == 2) {
-    //   this.colorFuente = '#FFFFFF';
-    // } else {
-    //   this.colorFuente = this.color;
-    //   this.colorFuente = '#000000';
-    // }
+
   }
 
   public getNombre(): string {

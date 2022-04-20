@@ -4,25 +4,32 @@
 $red-primary : mat-palette($mat-red,500);
 $red-accent : mat-palette($mat-red,200);
 $red-warn : mat-palette($mat-red,900);
-
 $red-theme: mat-light-theme($red-primary, $red-accent, $red-warn);
 
-@include angular-material-theme($red-theme);
+$green-primary : mat-palette($mat-green,500);
+$green-accent : mat-palette($mat-green,200);
+$green-warn : mat-palette($mat-green,900);
+$green-theme : mat-light-theme($green-primary,$green-accent,$green-warn);
+
+$blue-primary : mat-palette($mat-blue,500);
+$blue-accent : mat-palette($mat-blue,200);
+$blue-warn : mat-palette($mat-green,900);
+$blue-theme : mat-light-theme($blue-primary,$blue-accent,$blue-warn);
+
+$yellow-primary : mat-palette($mat-yellow,500);
+$yellow-accent : mat-palette($mat-yellow,200);
+$yellow-warn : mat-palette($mat-yellow,900);
+$yellow-theme : mat-light-theme($yellow-primary,$yellow-accent,$yellow-warn);
+
+.red-theme{
+  @include angular-material-theme($red-theme);
+}
 .green-theme{
-  $green-primary : mat-palette($mat-green,500);
-  $green-accent : mat-palette($mat-green,200);
-  $green-warn : mat-palette($mat-green,900);
-  $green-theme : mat-light-theme($green-primary,$green-accent,$green-warn);
+  @include angular-material-theme($green-theme);
 }
 .blue-theme{
-  $blue-primary : mat-palette($mat-blue,500);
-  $blue-accent : mat-palette($mat-blue,200);
-  $blue-warn : mat-palette($mat-green,900);
-  $blue-theme : mat-light-theme($blue-primary,$blue-accent,$blue-warn);
+  @include angular-material-theme($blue-theme);
 }
 .yellow-theme{
-  $yellow-primary : mat-palette($mat-yellow,500);
-  $yellow-accent : mat-palette($mat-yellow,200);
-  $yellow-warn : mat-palette($mat-yellow,900);
-  $yellow-theme : mat-light-theme($yellow-primary,$yellow-accent,$yellow-warn);
+  @include angular-material-theme($yellow-theme);
 }

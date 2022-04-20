@@ -7,7 +7,7 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4 text-center">
             <form (ngSubmit)="onSubmit()" #formLogin="ngForm">
-                <mat-card>
+                <mat-card [ngClass]="log.theme">
                     <mat-card-header>
                         <mat-card-title>
                             C4PI acceso
@@ -56,7 +56,7 @@
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-actions class="mat-card-button-login">
-                        <button mat-raised-button [ngStyle]="{'background-color': log.color}">Enviar</button>
+                        <button mat-raised-button color="primary">Enviar</button>
                     </mat-card-actions>
 
                     <mat-card-footer>
@@ -74,10 +74,10 @@
 
         </div>
         <div class="col-12 col-md-3 col-lg-2 text-center" [ngStyle]="{'color' : log.colorFuente}">
-        <p>{{log.palabrasColor[3]}}</p>
-        <p>{{log.palabrasColor[4]}}</p>
-        <p>{{log.palabrasColor[5]}}</p>
-    </div>
+            <p>{{log.palabrasColor[3]}}</p>
+            <p>{{log.palabrasColor[4]}}</p>
+            <p>{{log.palabrasColor[5]}}</p>
+        </div>
     </div>
 
 

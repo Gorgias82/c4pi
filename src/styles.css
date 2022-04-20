@@ -2,3 +2,13 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+    font-family: "Trajan";
+    src: local("Trajan"), url(./assets/fonts/trajan/Trajans-Caps_Normal.ttf) format("truetype");
+}
+.trajano{
+    /* fuente para color azul */
+    font-family: "Oxygen", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
