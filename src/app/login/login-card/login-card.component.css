@@ -1,7 +1,14 @@
-#inicio{
-    height: 100vh;
+#inicio {
+  height: 100vh;
+  transition: background-color 2s;
 }
-.error{
-    color: crimson;
-    font-size: large;
+.error {
+  color: crimson;
+  font-size: large;
+}
+.palabras{
+    /* transition: color 2s; */
+    opacity: 0;
+    visibility : visible;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
 }
