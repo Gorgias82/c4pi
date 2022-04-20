@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginCardComponent } from 'src/app/login/login-card/login-card.component';
-import { LoginRegistrationComponent } from 'src/app/login/login-registration/login-registration.component';
-import { LoginService } from 'src/app/login/login.service';
+import { LoginCardComponent } from '../../login/login-card/login-card.component';
+import { LoginRegistrationComponent } from '../../login/login-registration/login-registration.component';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-main-card',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { Departamento } from 'src/app/shared/departamento.model';
+import { Departamento } from '../../shared/departamento.model';
 import { Hotel } from '../../shared/hotel.model';
 import { LoginCardComponent } from '../login-card/login-card.component';
 import { LoginService } from '../login.service';
