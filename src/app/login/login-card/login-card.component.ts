@@ -18,10 +18,9 @@ export class LoginCardComponent implements OnInit {
   themes !: Array<string>
   color: string;
   colores: Array<string>;
-  palabrasTotales: Array<Array<String>>;
-  palabrasColor!: Array<String>;
-  colorFuente!: String;
-  visibilidad!: String;
+  palabrasTotales: Array<Array<string>>;
+  palabrasColor!: Array<string>;
+  visibilidad!: string;
   nombre!: string;
   private loginSub!: Subscription;
   private passwordSub!: Subscription;
@@ -63,10 +62,11 @@ export class LoginCardComponent implements OnInit {
         'Participativos',
         'Imprevisibles',
         'Intelectuales',
-        'Críticos',
+        'Criticos',
       ],
     ];
-    this.themes = ['red-theme','green-theme','blue-theme','yellow-theme']
+    this.themes = ['red-theme','green-theme','blue-theme','yellow-theme'];
+
   }
 
   ngOnInit() {
@@ -87,22 +87,6 @@ export class LoginCardComponent implements OnInit {
     this.color = this.colores[n];
     this.palabrasColor = this.palabrasTotales[n];
     this.theme = this.themes[n];
-    switch (n) {
-      case 0:
-        this.colorFuente = '#F7F9F9';
-        break;
-      case 1:
-        this.colorFuente = '#212F3D';
-        break;
-      case 2:
-        this.colorFuente = '#FBFCFC';
-        break;
-      case 3:
-        this.colorFuente = '#1C2833';
-        break;
-        default:
-          break;
-    }
 
   }
 
@@ -133,8 +117,8 @@ export class LoginCardComponent implements OnInit {
       });
   }
 
-  async onSubmit() {
-    this.mandarNombre();
+  onSubmit() {
+   this.mandarNombre();
     if (!this.errorNombre) {
       this.mandarPassword();
     }
@@ -142,9 +126,10 @@ export class LoginCardComponent implements OnInit {
     setTimeout(() => {
       this.redireccionar();
     }, 1000);
+    
   }
   redireccionar() {
-    //  alert("redireccionar error nombre " + this.errorNombre + " error password " + this.errorPassword);
+     alert("redireccionar error nombre " + this.errorNombre + " error password " + this.errorPassword);
     if (this.errorNombre === false && this.errorPassword === false) {
       alert(
         'funcion nombre dentro comprobacion ' +

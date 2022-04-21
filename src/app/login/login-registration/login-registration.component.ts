@@ -59,8 +59,7 @@ export class LoginRegistrationComponent implements OnInit {
       this.departamentos = departamentos;
     })
   }
-
-  onSubmit(){
+  mandarNombre(){
     if(this.nombre !== undefined ){
       if(this.nombre.length > 0){
         this.nombreVacio = false;
@@ -71,12 +70,16 @@ export class LoginRegistrationComponent implements OnInit {
         })
       }
     }
+  }
+  mandarPassword(){
     if(this.password !== undefined && this.password2 !== undefined){
       if(this.password.length > 0 && this.password2.length > 0){
         this.errorPassword = this.password == this.password2 ? false : true;
       }
     }
-    this.errorNombre = this.errorNombre === undefined ? true: false;
+  }
+  redireccionar(){
+
     this.errorHotel = this.selectedHotel === undefined? true:false;
     this.errorDepartamento = this.selectedDepartamento === undefined? true:false;
 
@@ -90,11 +93,19 @@ export class LoginRegistrationComponent implements OnInit {
       // if(this.errorInsercionEmpleado === false){
         
       // }
-    }
-   
-    
   }
+}
 
+  onSubmit(){
+  this.mandarNombre();
+  this.mandarPassword();
+  
+  setTimeout(() => {
+    this.redireccionar();
+  }, 1000);
+
+
+    }
  
 }
 

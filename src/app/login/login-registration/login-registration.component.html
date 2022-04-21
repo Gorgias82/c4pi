@@ -1,9 +1,12 @@
 <div id="inicio" class="container-fluid" [ngStyle]="{'background-color': log.color}">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-3 col-lg-2 text-center" [ngStyle]="{'color' : log.colorFuente}">
-            <p>{{log.palabrasColor[0]}}</p>
-            <p>{{log.palabrasColor[1]}}</p>
-            <p>{{log.palabrasColor[2]}}</p>
+    <div class="row justify-content-center gx-5">
+        <div class="col-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center">
+            <div id="palabras1" [ngClass]="log.theme" [ngStyle]="{'background-color': log.color}">
+                <p>{{log.palabrasColor[0]}}</p>
+                <p>{{log.palabrasColor[1]}}</p>
+                <p>{{log.palabrasColor[2]}}</p>
+            </div>
+
         </div>
         <div class="col-12 col-md-6 col-lg-4 text-center">
             <form (ngSubmit)="onSubmit()" #formLogin="ngForm">
@@ -73,10 +76,12 @@
             </form>
 
         </div>
-        <div class="col-12 col-md-3 col-lg-2 text-center" [ngStyle]="{'color' : log.colorFuente}">
-            <p>{{log.palabrasColor[3]}}</p>
-            <p>{{log.palabrasColor[4]}}</p>
-            <p>{{log.palabrasColor[5]}}</p>
+        <div class="col-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center">
+            <div id="palabras2" [ngClass]="log.theme" [ngStyle]="{'background-color': log.color}">
+                <p>{{log.palabrasColor[3]}}</p>
+                <p>{{log.palabrasColor[4]}}</p>
+                <p>{{log.palabrasColor[5]}}</p>
+            </div>
         </div>
     </div>
 

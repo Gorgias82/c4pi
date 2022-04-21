@@ -1,9 +1,11 @@
 <div id="inicio" class="container-fluid" [ngStyle]="{ 'background-color': color }">
-  <div class="row justify-content-center">
-    <div class="palabras trajano col-12 col-md-3 col-lg-2 text-center" [ngStyle]="{ color: colorFuente }">
-      <p>{{ palabrasColor[0] }}</p>
-      <p>{{ palabrasColor[1] }}</p>
-      <p>{{ palabrasColor[2] }}</p>
+  <div class="row justify-content-center gx-2">
+    <div class="col-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center ">
+      <div id="palabras1" [ngClass]="theme" [ngStyle]="{ 'background-color': color }">
+        <p>{{ palabrasColor[0] }}</p>
+        <p>{{ palabrasColor[1] }}</p>
+        <p>{{ palabrasColor[2] }}</p>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 text-center">
       <form (ngSubmit)="onSubmit()" #formLogin="ngForm">
@@ -24,12 +26,13 @@
               <mat-label>Contraseña:</mat-label>
               <input matInput placeholder="Contraseña" name="password" type="password" [(ngModel)]="password" />
               <mat-hint>Introduzca su contraseña</mat-hint>
+
             </mat-form-field>
           </mat-card-content>
           <mat-card-actions class="mat-card-button-login">
             <button mat-raised-button color="primary">Enviar</button>
           </mat-card-actions>
-          <mat-card-footer>
+          <mat-card-footer id="footer">
             <p *ngIf="errorNombre" class="error">
               No existe ningun usuario con ese nombre
             </p>
@@ -41,10 +44,13 @@
         </mat-card>
       </form>
     </div>
-    <div class="palabras col-12 col-md-3 col-lg-2 text-center" [ngStyle]="{ color: colorFuente }">
-      <p>{{ palabrasColor[3] }}</p>
-      <p>{{ palabrasColor[4] }}</p>
-      <p>{{ palabrasColor[5] }}</p>
+    <div class="col-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center">
+      <div id="palabras2" [ngClass]="theme" [ngStyle]="{ 'background-color': color }">
+        <p>{{ palabrasColor[3] }}</p>
+        <p>{{ palabrasColor[4] }}</p>
+        <p>{{ palabrasColor[5] }}</p>
+      </div>
+
     </div>
   </div>
 </div>

@@ -1,14 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* html, body { height: 100%; } */
 @font-face {
     font-family: "Trajan";
-    src: local("Trajan"), url(./assets/fonts/trajan/Trajans-Caps_Normal.ttf) format("truetype");
+    src: local("Trajan"), url(./assets/fonts/trajan/Trajans-Caps_Normal.ttf);
 }
-.trajano{
-    /* fuente para color azul */
-    font-family: "Oxygen", Arial, Helvetica, sans-serif;
-    font-size: 20px;
+@font-face {
+    font-family: "Centaur";
+    src: local("Centaur"), url(./assets/fonts/centaur/CentaurMTStd.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Futura";
+    src: local("Futura"), url(./assets/fonts/futura/futura_medium_condensed_bt.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Circus";
+    src: local("Circus"), url(./assets/fonts/circus/Circus.ttf) format("truetype");
 }
 
+#palabras1, #palabras2{
+    transition: background-color 2s;
+
+}
+#palabras1 p, #palabras2 p{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.error{
+    color: crimson;
+    font-size: large;
+}
+#inicio {
+    height: 100vh;
+    transition: background-color 1s;
+  }
+#footer{
+    font-size: 0.6em;
+}
