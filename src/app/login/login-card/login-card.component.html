@@ -1,7 +1,7 @@
 <div id="inicio" class="container-fluid" [ngStyle]="{ 'background-color': color }">
   <div class="row justify-content-center gx-2">
     <div class="col-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center ">
-      <div id="palabras1" [ngClass]="theme" [ngStyle]="{ 'background-color': color }">
+      <div id="palabras1" [ngClass]="fuente" [ngStyle]="{ 'background-color': color }">
         <p>{{ palabrasColor[0] }}</p>
         <p>{{ palabrasColor[1] }}</p>
         <p>{{ palabrasColor[2] }}</p>
@@ -9,7 +9,7 @@
     </div>
     <div class="col-12 col-md-6 col-lg-4 text-center">
       <form (ngSubmit)="onSubmit()" #formLogin="ngForm">
-        <mat-card [ngClass]="theme">
+        <mat-card  [ngClass]="theme">
           <mat-card-header>
             <mat-card-title> C4PI acceso </mat-card-title>
           </mat-card-header>
@@ -40,12 +40,13 @@
               La contraseña no es correcta
             </p>
           </mat-card-footer>
+        
         </mat-card>
       </form>
-      <a [ngClass]="theme" href="home/registro">Registrarse como nuevo usuario</a>
+      <a [ngClass]="fuente" [routerLink]="['../','registro']" queryParamsHandling="preserve">Registrarse como nuevo usuario</a>
     </div>
     <div class="col-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center">
-      <div id="palabras2" [ngClass]="theme" [ngStyle]="{ 'background-color': color }">
+      <div id="palabras2" [ngClass]="fuente" [ngStyle]="{ 'background-color': color }">
         <p>{{ palabrasColor[3] }}</p>
         <p>{{ palabrasColor[4] }}</p>
         <p>{{ palabrasColor[5] }}</p>
@@ -53,9 +54,9 @@
 
     </div>
   </div>
-  <div class="row justify-content-center gx-2">
+  <!-- <div class="row justify-content-center gx-2">
     <div class="col-12 col-md-6 col-lg-4 text-center">
       <img src="../../../assets/imagenes/phoebe.jpg" alt="phoebe" height="300" width="300">
     </div>
-  </div>
+  </div> -->
 </div>

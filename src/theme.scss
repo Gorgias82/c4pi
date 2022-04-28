@@ -23,34 +23,22 @@ $yellow-theme : mat-light-theme($yellow-primary,$yellow-accent,$yellow-warn);
 
 .red-theme{
   @include angular-material-theme($red-theme);
-      /* fuente para color rojo */
-      font-family: "Futura", Arial, Helvetica, sans-serif;
-      font-size: 2em;
-      color: #F7F9F9;
-      background-color: #045551;
+  
+ 
 }
 .green-theme{
   @include angular-material-theme($green-theme);
-    /* fuente para color verde */
-    font-family: "Centaur", Arial, Helvetica, sans-serif;
-    font-size: 2em;
-    color: #212F3D;
-    background-color: #F7F9F9;
+ 
+ 
 }
 .blue-theme{
   @include angular-material-theme($blue-theme);
-    /* fuente para color azul */
-    font-family: "Trajan", Arial, Helvetica, sans-serif;
-    font-size: 2em;
-    color: #FBFCFC;
-    background-color: #045551;
+
+
 
 }
 .yellow-theme{
   @include angular-material-theme($yellow-theme);
-      /* fuente para color amarillo */
-      font-family: "Circus", Arial, Helvetica, sans-serif;
-      font-size: 2em;
-      color: #1C2833;
-      background-color: #FBFCFC;
+
+      
 }

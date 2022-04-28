@@ -1,3 +1,21 @@
-<mat-toolbar>
-    <span>My Application</span>
-  </mat-toolbar>
+<mat-toolbar [ngClass]="theme" fxLayout="row" color="primary">
+
+        <span fxFlex>C4PI</span>
+        <button  mat-button *ngFor="let item of menuItems" fxHide.xs>
+            {{item}}
+        </button>
+    
+        <button mat-icon-item [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+            lista
+        </button>
+
+
+    <mat-menu #dropMenu="matMenu">
+        <ng-container *ngFor="let item of menuItems">
+            <button mat-menu-item> 
+                {{item}}
+            </button>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </mat-menu>
+</mat-toolbar>

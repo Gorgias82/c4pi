@@ -14,6 +14,8 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login-card.component.css'],
 })
 export class LoginCardComponent implements OnInit {
+  fuente !: string;
+  fuentes !: Array<string>
   theme !: string;
   themes !: Array<string>
   color: string;
@@ -66,6 +68,7 @@ export class LoginCardComponent implements OnInit {
       ],
     ];
     this.themes = ['red-theme','green-theme','blue-theme','yellow-theme'];
+    this.fuentes = ['rojo','verde','azul','amarillo']
 
   }
 
@@ -87,7 +90,7 @@ export class LoginCardComponent implements OnInit {
     this.color = this.colores[n];
     this.palabrasColor = this.palabrasTotales[n];
     this.theme = this.themes[n];
-
+    this.fuente = this.fuentes[n]
   }
 
   public getNombre(): string {
