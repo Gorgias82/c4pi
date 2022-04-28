@@ -7,17 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'; 
 import { AuthGuardService } from './auth-guard.service';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,  
     BrowserAnimationsModule,
     LoginModule,
-    HttpClientModule
+    HttpClientModule,
+    MainModule
    
   ],
   providers: [HttpClient,AuthGuardService],
