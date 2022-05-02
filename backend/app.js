@@ -56,13 +56,13 @@ app.post("/comprobacion_nombre", (req, res, next) => {
 });
 
 app.post("/insercion_empleado", (req, res, next) => {
-  const idDep = req.body.idDep;
+  const id_departamento = req.body.idDep;
   const nombre = req.body.nombre;
   const password = req.body.password;
   let hash = bcrypt.hashSync(password, 5);
   con.query(
     "INSERT into c4pi.empleados(id_departamento,rango,login,password) VALUES(?,0,?,?)",
-    [idDep, nombre, hash],
+    [id_departamento, nombre, hash],
     function (err, result, fields) {
       if (err) throw err;
       if (result.affectedRows > 0) {

@@ -44,7 +44,7 @@ export class LoginRegistrationComponent implements OnInit {
   }
 
   insertaEmpleado(){
-    this.log.loginservice.insertaEmpleado({idDep : this.selectedDepartamento, nombre: this.nombre, password: this.password });
+    this.log.loginservice.insertaEmpleado({id_departamento : this.selectedDepartamento, nombre: this.nombre, password: this.password });
     this.empSub = this.log.loginservice.getEmpleadoUpdatedListener()
     .subscribe((message : boolean) =>{
       this.errorInsercionEmpleado = message;

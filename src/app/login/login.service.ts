@@ -81,7 +81,7 @@ sendPassword(password : {nombre: string,password : string}){
  
 }
 
-insertaEmpleado(empleado : {idDep : number,nombre:string,password:string}){
+insertaEmpleado(empleado : {id_departamento : number,nombre:string,password:string}){
   this.http.post<boolean>('http://localhost:3000/insercion_empleado', empleado)
   .subscribe((responseData: boolean) => {
     this.respuestaEmpleado = responseData;

@@ -22,7 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatIconModule} from '@angular/material/icon';
 
-import { FlexLayoutModule } from "@angular/flex-layout";
+
 @NgModule({
   declarations: [
     AppComponent
@@ -44,7 +44,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatDividerModule,
     MatMenuModule,
     MatToolbarModule,
-    FlexLayoutModule,
+  
     MatIconModule
    
   ],
