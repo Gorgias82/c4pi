@@ -3,7 +3,10 @@ const bodyParser = require("body-parser");
 // const { expressCspHeader, INLINE, NONE, SELF } = require("express-csp-header");
 const app = express();
 var mysql = require("mysql");
-
+const http = require("http");
+const port = process.env.PORT || 3000;
+app.set("port", port);
+const server = http.createServer(app);
 // var con = mysql.createConnection({
 //   host: "localhost",
 //   user: "jorge",
@@ -128,3 +131,5 @@ app.get("/hoteles", (req, res, next) => {
 });
 
 module.exports = app;
+
+server.listen(process.env.PORT || 3000);

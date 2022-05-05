@@ -5,7 +5,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatToolbarModule,
     MatMenuModule,
     MatDividerModule,
+    FlexLayoutModule
 
   ],
 
