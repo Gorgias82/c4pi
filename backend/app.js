@@ -58,8 +58,28 @@ app.post("/comprobacion_nombre", (req, res, next) => {
   // });
 });
 
+app.post("/insercion_cliente", (req, res, next) => {
+  const { dni, nombre, apellido1, apellido2 } = req.body;
+  console.log(dni, nombre, apellido1, apellido2);
+  con.query(
+    "INSERT into c4pi.clientes(dni,nombre,apellido1,apellido2) VALUES(?,?,?,?)",
+    [dni, nombre, apellido1, apellido2],
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      if (result.affectedRows > 0) {
+        respuesta = true;
+      } else {
+        respuesta = false;
+      }
+      console.log(respuesta);
+      res.status(200).json(respuesta);
+    }
+  );
+});
+
 app.post("/insercion_empleado", (req, res, next) => {
-  const id_departamento = req.body.idDep;
+  const id_departamento = req.body.id_departamento;
   const nombre = req.body.nombre;
   const password = req.body.password;
   let hash = bcrypt.hashSync(password, 5);

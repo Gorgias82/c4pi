@@ -102,7 +102,7 @@ export class LoginCardComponent implements OnInit {
     this.loginSub = this.loginservice
       .getLoginUpdatedListener()
       .subscribe((message: boolean) => {
-        alert('respuesta de bd nombre ' + message);
+        // alert('respuesta de bd nombre ' + message);
 
         this.errorNombre = !message;
       });
@@ -115,7 +115,7 @@ export class LoginCardComponent implements OnInit {
     this.passwordSub = this.loginservice
       .getPasswordUpdatedListener()
       .subscribe((message: boolean) => {
-        alert('respuesta de bd password ' + message);
+        // alert('respuesta de bd password ' + message);
         this.errorPassword = !message;
       });
   }
@@ -132,14 +132,14 @@ export class LoginCardComponent implements OnInit {
     
   }
   redireccionar() {
-     alert("redireccionar error nombre " + this.errorNombre + " error password " + this.errorPassword);
+    //  alert("redireccionar error nombre " + this.errorNombre + " error password " + this.errorPassword);
     if (this.errorNombre === false && this.errorPassword === false) {
-      alert(
-        'funcion nombre dentro comprobacion ' +
-          this.errorNombre +
-          ' password ' +
-          this.errorPassword
-      );
+      // alert(
+      //   'funcion nombre dentro comprobacion ' +
+      //     this.errorNombre +
+      //     ' password ' +
+      //     this.errorPassword
+      // );
       this.loginservice.data = this.nombre;
       this.router.navigate(['/home/main']);
     }
