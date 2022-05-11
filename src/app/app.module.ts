@@ -23,9 +23,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,6 @@ import {MatIconModule} from '@angular/material/icon';
     MatDividerModule,
     MatMenuModule,
     MatToolbarModule,
-  
     MatIconModule
    
   ],
