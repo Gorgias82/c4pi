@@ -1,60 +1,102 @@
 <form [formGroup]="registroCliente" (ngSubmit)="onSubmit(registroCliente)">
-    <mat-card class="blue-theme">
-        <mat-card-header>
-            <mat-card-title>
-                Crear nuevo cliente
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card>
-            <mat-form-field>
-                <mat-label>Documento:</mat-label>
-                <input matInput placeholder="Numero de dni o pasaporte" name="dni" formControlName="dni">
-                <mat-hint>Introduzca el numero de documento de usuario</mat-hint>
-                <mat-error
-                    *ngIf="registroCliente.get('dni')?.invalid && (registroCliente.get('dni')?.dirty || registroCliente.get('dni')?.touched)"
-                    required>
-                    Debe introducir un numero de documento
-                </mat-error>
-            </mat-form-field>
+  <mat-card class="blue-theme">
+    <mat-card-header>
+      <mat-card-title> Crear nuevo cliente </mat-card-title>
+    </mat-card-header>
+    <mat-card>
+      <mat-form-field>
+        <mat-label>Documento:</mat-label>
+        <input
+          matInput
+          placeholder="Numero de dni o pasaporte"
+          name="dni"
+          formControlName="dni"
+        />
+        <mat-hint>Introduzca el numero de documento de usuario</mat-hint>
+        <mat-error
+          *ngIf="
+            registroCliente.get('dni')?.invalid &&
+            (registroCliente.get('dni')?.dirty ||
+              registroCliente.get('dni')?.touched)
+          "
+          required
+        >
+          Debe introducir un numero de documento
+        </mat-error>
+      </mat-form-field>
 
-            <mat-card-content>
-                <mat-form-field>
-                    <mat-label>Nombre:</mat-label>
-                    <input matInput placeholder="Nombre" name="nombre" formControlName="nombre">
-                    <mat-hint>Introduzca el nombre de usuario</mat-hint>
-                    <mat-error
-                        *ngIf="registroCliente.get('nombre')?.invalid && (registroCliente.get('nombre')?.dirty || registroCliente.get('nombre')?.touched)">
-                        Debe introducir un nombre
-                    </mat-error>
-                </mat-form-field>
-            </mat-card-content>
-            <mat-card-content>
-                <mat-form-field>
-                    <mat-label>Primer apellido:</mat-label>
-                    <input matInput placeholder="Primer apellido" name="apellido1" formControlName="apellido1">
-                    <mat-hint>Introduzca el primer apellido del cliente</mat-hint>
-                    <mat-error
-                        *ngIf="registroCliente.get('apellido1')?.invalid && (registroCliente.get('apellido1')?.dirty || registroCliente.get('apellido1')?.touched)">
-                        Debe introducir un nombre
-                    </mat-error>
-                </mat-form-field>
-            </mat-card-content>
-            <mat-card-content>
-                <mat-form-field>
-                    <mat-label>Segundo apellido:</mat-label>
-                    <input matInput placeholder="Segundo apellido" name="apellido2" formControlName="apellido2">
-                    <mat-hint>Introduzca el segundo apellido del cliente</mat-hint>
-                </mat-form-field>
-            </mat-card-content>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Nombre:</mat-label>
+          <input
+            matInput
+            placeholder="Nombre"
+            name="nombre"
+            formControlName="nombre"
+          />
+          <mat-hint>Introduzca el nombre de usuario</mat-hint>
+          <mat-error
+            *ngIf="
+              registroCliente.get('nombre')?.invalid &&
+              (registroCliente.get('nombre')?.dirty ||
+                registroCliente.get('nombre')?.touched)
+            "
+          >
+            Debe introducir un nombre
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Primer apellido:</mat-label>
+          <input
+            matInput
+            placeholder="Primer apellido"
+            name="apellido1"
+            formControlName="apellido1"
+          />
+          <mat-hint>Introduzca el primer apellido del cliente</mat-hint>
+          <mat-error
+            *ngIf="
+              registroCliente.get('apellido1')?.invalid &&
+              (registroCliente.get('apellido1')?.dirty ||
+                registroCliente.get('apellido1')?.touched)
+            "
+          >
+            Debe introducir un nombre
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Segundo apellido:</mat-label>
+          <input
+            matInput
+            placeholder="Segundo apellido"
+            name="apellido2"
+            formControlName="apellido2"
+          />
+          <mat-hint>Introduzca el segundo apellido del cliente</mat-hint>
+        </mat-form-field>
+      </mat-card-content>
 
-
-
-
-            <mat-card-actions class="mat-card-button-login">
-                <button mat-raised-button type="submit"
-                    [disabled]="registroCliente.get('dni')?.invalid || registroCliente.get('nombre')?.invalid || registroCliente.get('apellido1')?.invalid"
-                    color="primary">Enviar</button>
-            </mat-card-actions>
-            <p *ngIf="errorInsercionCliente" class="error"> No se ha podido insertar el empleado
-                correctamente</p>
-        </mat-card>
+      <mat-card-actions class="mat-card-button-login">
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="
+            registroCliente.get('dni')?.invalid ||
+            registroCliente.get('nombre')?.invalid ||
+            registroCliente.get('apellido1')?.invalid
+          "
+          color="primary"
+        >
+          Enviar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <p *ngIf="errorInsercionCliente" class="error">
+      No se ha podido insertar el empleado correctamente
+    </p>
+  </mat-card>
+</form>
