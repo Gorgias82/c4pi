@@ -36,7 +36,24 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.post("/comprobacion_dni", (req, res, next) => {
+  const dni = req.body.envio;
+  let respuesta;
 
+  con.query(
+    "SELECT dni from c4pi.clientes where dni=?",
+    [dni],
+    function (err, result) {
+      if (err) throw err;
+      if (result.length > 0) {
+        respuesta = true;
+      } else {
+        respuesta = false;
+      }
+      res.status(200).json(respuesta);
+    }
+  );
+});
 app.post("/comprobacion_nombre", (req, res, next) => {
   const login = req.body.envio;
   let respuesta;
@@ -148,6 +165,25 @@ app.get("/hoteles", (req, res, next) => {
     res.status(200).json(respuesta);
   });
   // });
+});
+
+app.get("/clientes", (req, res, next) => {
+  con.query("select * from c4pi.clientes", function (err, result) {
+    if (err) throw err;
+    const respuesta = result;
+    res.status(200).json(respuesta);
+  });
+});
+
+app.get("/opiniones", (req, res, next) => {
+  con.query(
+    "select id_cliente, color, count(color) as cantidad from c4pi.opiniones group by color",
+    function (err, result) {
+      if (err) throw err;
+      const respuesta = result;
+      res.status(200).json(respuesta);
+    }
+  );
 });
 
 module.exports = app;

@@ -29,6 +29,7 @@ CREATE TABLE c4pi.clientes
 ,apellido2 VARCHAR(20)
 ,createdAt DATETIME
 ,updatedAt DATETIME
+,unique (dni)
 ,primary key (id));
 
 CREATE TABLE c4pi.departamentos

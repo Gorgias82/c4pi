@@ -20,12 +20,14 @@ import {FormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
+import { VistaClientesComponent } from './vista-clientes/vista-clientes.component';
 
 @NgModule({
   declarations: [
     MainCardComponent,
     NavbarComponent,
-    RegistroClienteComponent
+    RegistroClienteComponent,
+    VistaClientesComponent
   ],
   imports: [
     CommonModule,
