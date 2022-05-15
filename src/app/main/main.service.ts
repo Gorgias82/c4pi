@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { response } from 'express';
 import { Subject } from 'rxjs';
 import { Cliente } from '../shared/cliente.model';
+import { Opinion } from '../shared/opinion.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,20 @@ export class MainService {
   clienteUpdated = new Subject<boolean>();
   private respuestaDni!: boolean;
   dniUpdated = new Subject<boolean>();
+  private respuestaClientes!: Cliente[];
+  ClientesUpdated = new Subject<Cliente[]>();
+  private respuestaOpiniones!: Opinion[];
+  OpinionesUpdated = new Subject<Opinion[]>();
+
   constructor(private http: HttpClient) {}
+
+  getOpinionesUpdatedListener() {
+    return this.OpinionesUpdated.asObservable();
+  }
+
+  getClientesUpdatedListener() {
+    return this.ClientesUpdated.asObservable();
+  }
 
   getDniUpdatedListener() {
     return this.dniUpdated.asObservable();
@@ -19,6 +34,25 @@ export class MainService {
   getEmpleadoUpdatedListener() {
     return this.clienteUpdated.asObservable();
   }
+
+  getOpiniones() {
+    this.http
+      .get<Opinion[]>('http://localhost:3000/opiniones')
+      .subscribe((response: Opinion[]) => {
+        this.respuestaOpiniones = response;
+        this.OpinionesUpdated.next(this.respuestaOpiniones);
+      });
+  }
+
+  getClientes() {
+    this.http
+      .get<Cliente[]>('http://localhost:3000/clientes')
+      .subscribe((response: Cliente[]) => {
+        this.respuestaClientes = response;
+        this.ClientesUpdated.next(this.respuestaClientes);
+      });
+  }
+
   insertaCliente(cliente: {
     dni: string;
     nombre: string;

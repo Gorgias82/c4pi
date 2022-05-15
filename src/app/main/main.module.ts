@@ -10,16 +10,18 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { ReactiveFormsModule } from '@angular/forms';
 
 //modules de materials
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
-import {MatButtonModule} from '@angular/material/button'; 
-import {MatInputModule} from '@angular/material/input'; 
-import {MatSelectModule} from '@angular/material/select'; 
-import {FormsModule} from '@angular/forms';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+
 import { VistaClientesComponent } from './vista-clientes/vista-clientes.component';
 
 @NgModule({
@@ -27,7 +29,7 @@ import { VistaClientesComponent } from './vista-clientes/vista-clientes.componen
     MainCardComponent,
     NavbarComponent,
     RegistroClienteComponent,
-    VistaClientesComponent
+    VistaClientesComponent,
   ],
   imports: [
     CommonModule,
@@ -42,8 +44,8 @@ import { VistaClientesComponent } from './vista-clientes/vista-clientes.componen
     MatDividerModule,
     MatMenuModule,
     MatToolbarModule,
-
+    MatTableModule,
+    MatIconModule,
   ],
-
 })
-export class MainModule { }
+export class MainModule {}

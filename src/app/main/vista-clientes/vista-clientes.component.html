@@ -1,1 +1,36 @@
-<p>vista-clientes works!</p>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef> Numero de documento. </th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.dni}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="apellido1">
+        <th mat-header-cell *matHeaderCellDef> Primer apellido </th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.apellido1}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="apellido2">
+        <th mat-header-cell *matHeaderCellDef> Segundo apellido </th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.apellido2}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="rojo">
+        <th mat-header-cell *matHeaderCellDef> Opiniones </th>
+        <td mat-cell *matCellDef=""> Opiniones </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

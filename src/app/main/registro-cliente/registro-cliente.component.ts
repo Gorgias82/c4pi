@@ -24,7 +24,9 @@ export class RegistroClienteComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.registroCliente);
+  }
 
   insertaCliente() {
     let dni = this.registroCliente.get('dni')?.value as unknown as string;
@@ -45,6 +47,7 @@ export class RegistroClienteComponent implements OnInit {
         this.errorInsercionCliente = !message;
         if (message) {
           alert('Cliente registrado correctamente');
+          window.location.reload();
         }
       });
   }
