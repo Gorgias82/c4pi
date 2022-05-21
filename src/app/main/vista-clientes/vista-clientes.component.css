@@ -1,3 +1,63 @@
 table{
     width: 100%;
 }
+
+  .rojoT{
+      background-color: red;
+      color: white !important;
+      text-align: center !important;
+      font-size: large;
+        padding-right: 50px !important;
+      min-width: 10%;
+     
+      cursor: pointer;
+  }
+  .rojoRow{
+      border: 2px dotted red;
+  }
+  .verdeRow{
+      border: 2px dotted green;
+  }
+  .azulRow{
+      border: 2px dotted blue;
+  }
+  .amarilloRow{
+      border: 2px dotted yellow;
+  }
+  .rojoT:hover, .verdeT:hover, .azulT:hover, .amarilloT:hover{
+    border: 5px outset black !important;
+  }
+
+
+  .azulT{
+      background-color: blue;
+      color: white;
+      text-align: center !important;
+      min-width: 10%;
+      cursor: pointer;
+      font-size: large;
+  }
+  .verdeT{
+      background-color: green;
+      color: white;
+      text-align: center !important;
+      font-size: large;
+      min-width: 10%;
+      cursor: pointer;
+  }
+  .amarilloT{
+      background-color:yellow;
+      text-align: center !important;
+      font-size: large;
+      min-width: 10%;
+      cursor: pointer;
+  }
+  .total{
+    text-align: center !important;
+    font-size: large;
+    min-width: 10%;
+
+  }
+  #tablaClientes{
+      
+  }
