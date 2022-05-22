@@ -11,9 +11,7 @@ import { VistaClientesComponent } from '../vista-clientes/vista-clientes.compone
 export class MainCardComponent implements OnInit {
   constructor(public loginService: LoginService, public router: Router) {}
 
-  ngOnInit(): void {
-    console.log(this.loginService.data);
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(): void {}
 }

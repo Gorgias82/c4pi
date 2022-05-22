@@ -20,6 +20,9 @@ var con = mysql.createPool({
   database: "c4pi",
 });
 var bcrypt = require("bcrypt");
+// const {
+//   resolveSanitizationFn,
+// } = require("@angular/compiler/src/render3/view/template");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -106,11 +109,23 @@ app.post("/insercion_empleado", (req, res, next) => {
     function (err, result, fields) {
       if (err) throw err;
       if (result.affectedRows > 0) {
-        respuesta = true;
+        respuesta = result.insertId;
       } else {
         respuesta = false;
       }
       res.status(200).json(respuesta);
+    }
+  );
+});
+
+app.post("/getEmpleado", (req, res, next) => {
+  const nombre = req.body.nombre;
+  con.query(
+    "SELECT * from c4pi.empleados where login=?",
+    [nombre],
+    function (err, result) {
+      if (err) throw err;
+      res.status(200).json(result[0]);
     }
   );
 });

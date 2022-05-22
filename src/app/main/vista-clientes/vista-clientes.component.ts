@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/login/login.service';
 import { Cliente } from 'src/app/shared/cliente.model';
+import { Empleado } from 'src/app/shared/empleado.model';
 import { Opinion } from 'src/app/shared/opinion.model';
 import { MainService } from '../main.service';
 
@@ -29,9 +31,16 @@ export class VistaClientesComponent implements OnInit {
   ];
   dataSource: any;
   filaSeleccionada: string = '';
-  constructor(private MainService: MainService) {}
+  empleado!: Empleado;
+  selectedOpinion!: Opinion;
+  constructor(
+    private MainService: MainService,
+    public loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
+    this.loginService.data;
+
     this.MainService.getClientes();
     this.clientesSub = this.MainService.getClientesUpdatedListener().subscribe(
       (clientes: Cliente[]) => {
@@ -110,8 +119,6 @@ export class VistaClientesComponent implements OnInit {
     //   console.log(this.clientes);
     //   this.dataSource = new MatTableDataSource(this.clientes);
     // }, 1000);
-
-    console.log(this.clientes);
   }
 
   onColor(e: any) {
@@ -140,10 +147,46 @@ export class VistaClientesComponent implements OnInit {
   }
   onColorLeave(e: any) {
     let fila = e.target.parentNode;
-    console.log(fila.childNodes);
     fila.className = fila.className.replace('rojoRow', '');
     fila.className = fila.className.replace('azulRow', '');
     fila.className = fila.className.replace('verdeRow', '');
     fila.className = fila.className.replace('amarilloRow', '');
+  }
+
+  onOpinion(
+    color: number,
+    id: number,
+    nombre: string,
+    apellido1: string,
+    apellido2: string
+  ) {
+    this.selectedOpinion = {
+      id_cliente: id,
+      color: color,
+      id_empleado: this.loginService.data.id,
+      cantidad: 0,
+    };
+    let colorNombre;
+    switch (color) {
+      case 0:
+        colorNombre = 'rojo';
+        break;
+      case 1:
+        colorNombre = 'verde';
+        break;
+      case 2:
+        colorNombre = 'azul';
+        break;
+      case 3:
+        colorNombre = 'amarillo';
+        break;
+      default:
+        break;
+    }
+    let confirmacion = confirm(
+      `¿Quiere opinar que el caracter de ${nombre} ${apellido1} ${apellido2} es del color ${colorNombre}?`
+    );
+    console.log(confirmacion);
+    console.log(this.selectedOpinion);
   }
 }

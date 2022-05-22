@@ -30,26 +30,30 @@
     <ng-container matColumnDef="rojo">
         <th mat-header-cell *matHeaderCellDef> Rojo </th>
         <td mat-cell *matCellDef="let cliente" class="rojoT" (mouseover)="onColor($event)"
-            (mouseleave)="onColorLeave($event)">
+            (mouseleave)="onColorLeave($event)"
+            (click)="onOpinion(0,cliente.id,cliente.nombre,cliente.apellido1,cliente.apellido2)">
             {{cliente.rojo.porcentaje}} % </td>
     </ng-container>
     <ng-container matColumnDef="verde">
         <th mat-header-cell *matHeaderCellDef> Verde </th>
         <td mat-cell *matCellDef="let cliente" class="verdeT" (mouseover)="onColor($event)"
-            (mouseleave)="onColorLeave($event)">
+            (mouseleave)="onColorLeave($event)"
+            (click)="onOpinion(1,cliente.id,cliente.nombre,cliente.apellido1,cliente.apellido2)">
             {{cliente.verde.porcentaje}} %
         </td>
     </ng-container>
     <ng-container matColumnDef="azul">
         <th mat-header-cell *matHeaderCellDef> Azul </th>
         <td mat-cell *matCellDef="let cliente" class="azulT" (mouseover)="onColor($event)"
-            (mouseleave)="onColorLeave($event)">
+            (mouseleave)="onColorLeave($event)"
+            (click)="onOpinion(2,cliente.id,cliente.nombre,cliente.apellido1,cliente.apellido2)">
             {{cliente.azul.porcentaje}} % </td>
     </ng-container>
     <ng-container matColumnDef="amarillo">
         <th mat-header-cell *matHeaderCellDef> Amarillo </th>
         <td mat-cell *matCellDef="let cliente" class="amarilloT" (mouseover)="onColor($event)"
-            (mouseleave)="onColorLeave($event)">
+            (mouseleave)="onColorLeave($event)"
+            (click)="onOpinion(3,cliente.id,cliente.nombre,cliente.apellido1,cliente.apellido2)">
             {{cliente.amarillo.porcentaje}}
             % </td>
     </ng-container>

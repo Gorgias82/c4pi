@@ -2,6 +2,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, throwIfEmpty } from 'rxjs';
+import { Empleado } from 'src/app/shared/empleado.model';
 import { Hotel } from '../../shared/hotel.model';
 import { LoginService } from '../login.service';
 
@@ -14,10 +15,10 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login-card.component.css'],
 })
 export class LoginCardComponent implements OnInit {
-  fuente !: string;
-  fuentes !: Array<string>
-  theme !: string;
-  themes !: Array<string>
+  fuente!: string;
+  fuentes!: Array<string>;
+  theme!: string;
+  themes!: Array<string>;
   color: string;
   colores: Array<string>;
   palabrasTotales: Array<Array<string>>;
@@ -26,10 +27,12 @@ export class LoginCardComponent implements OnInit {
   nombre!: string;
   private loginSub!: Subscription;
   private passwordSub!: Subscription;
+  private EmpleadoSub!: Subscription;
   errorNombre!: boolean;
   hoteles!: Hotel[];
   password!: string;
   errorPassword!: boolean;
+  empleado!: Empleado;
   constructor(public loginservice: LoginService, public router: Router) {
     this.color = '#FFFFFF';
     this.colores = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
@@ -67,9 +70,8 @@ export class LoginCardComponent implements OnInit {
         'Criticos',
       ],
     ];
-    this.themes = ['red-theme','green-theme','blue-theme','yellow-theme'];
-    this.fuentes = ['rojo','verde','azul','amarillo']
-
+    this.themes = ['red-theme', 'green-theme', 'blue-theme', 'yellow-theme'];
+    this.fuentes = ['rojo', 'verde', 'azul', 'amarillo'];
   }
 
   ngOnInit() {
@@ -90,7 +92,7 @@ export class LoginCardComponent implements OnInit {
     this.color = this.colores[n];
     this.palabrasColor = this.palabrasTotales[n];
     this.theme = this.themes[n];
-    this.fuente = this.fuentes[n]
+    this.fuente = this.fuentes[n];
   }
 
   public getNombre(): string {
@@ -113,13 +115,20 @@ export class LoginCardComponent implements OnInit {
     this.passwordSub = this.loginservice
       .getPasswordUpdatedListener()
       .subscribe((message: boolean) => {
-
         this.errorPassword = !message;
+        if (message) {
+          this.loginservice.getEmpleado({ nombre: this.nombre });
+          this.EmpleadoSub = this.loginservice
+            .getEmpleadoLoginUpdatedListener()
+            .subscribe((emp: Empleado) => {
+              this.empleado = emp;
+            });
+        }
       });
   }
 
   onSubmit() {
-   this.mandarNombre();
+    this.mandarNombre();
     if (!this.errorNombre) {
       this.mandarPassword();
     }
@@ -127,12 +136,10 @@ export class LoginCardComponent implements OnInit {
     setTimeout(() => {
       this.redireccionar();
     }, 1000);
-    
   }
   redireccionar() {
-
     if (this.errorNombre === false && this.errorPassword === false) {
-      this.loginservice.data = this.nombre;
+      this.loginservice.data = this.empleado;
       this.router.navigate(['/home/main']);
     }
   }
