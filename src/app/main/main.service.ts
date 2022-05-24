@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { response } from 'express';
+import { stringify } from 'querystring';
 import { Subject } from 'rxjs';
 import { Cliente } from '../shared/cliente.model';
 import { Opinion } from '../shared/opinion.model';
@@ -12,13 +13,19 @@ export class MainService {
   private respuestaCliente!: boolean;
   clienteUpdated = new Subject<boolean>();
   private respuestaDni!: boolean;
+  private respuestaOpinion!: number;
   dniUpdated = new Subject<boolean>();
   private respuestaClientes!: Cliente[];
   ClientesUpdated = new Subject<Cliente[]>();
   private respuestaOpiniones!: Opinion[];
   OpinionesUpdated = new Subject<Opinion[]>();
+  OpinionUpdated = new Subject<number>();
 
   constructor(private http: HttpClient) {}
+
+  getOpinionUpdatedListener() {
+    return this.OpinionUpdated.asObservable();
+  }
 
   getOpinionesUpdatedListener() {
     return this.OpinionesUpdated.asObservable();
@@ -50,6 +57,15 @@ export class MainService {
       .subscribe((response: Cliente[]) => {
         this.respuestaClientes = response;
         this.ClientesUpdated.next(this.respuestaClientes);
+      });
+  }
+
+  setOpinion(opinion: Opinion) {
+    this.http
+      .post<number>('http://localhost:3000/insertaOpinion', opinion)
+      .subscribe((response: number) => {
+        this.respuestaOpinion = response;
+        this.OpinionUpdated.next(this.respuestaOpinion);
       });
   }
 

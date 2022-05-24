@@ -18,6 +18,7 @@ export class VistaClientesComponent implements OnInit {
   opiniones: Opinion[] = [];
   private clientesSub!: Subscription;
   private opinionesSub!: Subscription;
+  private opinionSub!: Subscription;
   displayedColumns: string[] = [
     'dni',
     'nombre',
@@ -33,14 +34,20 @@ export class VistaClientesComponent implements OnInit {
   filaSeleccionada: string = '';
   empleado!: Empleado;
   selectedOpinion!: Opinion;
+  respuestaSetOpinion: string = '';
+  claseRespuesta: string = '';
+  colorNombre: string = '';
   constructor(
     private MainService: MainService,
     public loginService: LoginService
   ) {}
 
   ngOnInit(): void {
-    this.loginService.data;
+    this.cargaClientes();
+  }
 
+  cargaClientes() {
+    this.loginService.data;
     this.MainService.getClientes();
     this.clientesSub = this.MainService.getClientesUpdatedListener().subscribe(
       (clientes: Cliente[]) => {
@@ -69,6 +76,7 @@ export class VistaClientesComponent implements OnInit {
   cargarOpiniones() {
     console.log('carga opiniones');
     for (let cliente of this.clientes) {
+      cliente.cantidadOpiniones = 0;
       for (let opinion of this.opiniones) {
         if (cliente.id == opinion.id_cliente) {
           switch (opinion.color) {
@@ -163,30 +171,53 @@ export class VistaClientesComponent implements OnInit {
     this.selectedOpinion = {
       id_cliente: id,
       color: color,
-      id_empleado: this.loginService.data.id,
+      id_empleado: Number(localStorage.getItem('id')),
       cantidad: 0,
     };
-    let colorNombre;
+
     switch (color) {
       case 0:
-        colorNombre = 'rojo';
+        this.colorNombre = 'rojo';
         break;
       case 1:
-        colorNombre = 'verde';
+        this.colorNombre = 'verde';
         break;
       case 2:
-        colorNombre = 'azul';
+        this.colorNombre = 'azul';
         break;
       case 3:
-        colorNombre = 'amarillo';
+        this.colorNombre = 'amarillo';
         break;
       default:
         break;
     }
     let confirmacion = confirm(
-      `¿Quiere opinar que el caracter de ${nombre} ${apellido1} ${apellido2} es del color ${colorNombre}?`
+      `¿Quiere opinar que el caracter de ${nombre} ${apellido1} ${apellido2} es del color ${this.colorNombre}?`
     );
-    console.log(confirmacion);
-    console.log(this.selectedOpinion);
+
+    if (confirmacion) {
+      this.MainService.setOpinion(this.selectedOpinion);
+      this.opinionSub = this.MainService.getOpinionUpdatedListener().subscribe(
+        (respuesta: number) => {
+          console.log(respuesta);
+          switch (respuesta) {
+            case 0:
+              this.respuestaSetOpinion =
+                'No se ha podido introducir la opinión';
+              this.claseRespuesta = 'error';
+              break;
+            case 1:
+              this.respuestaSetOpinion = `Se ha actualizado su opinión de ${nombre} ${apellido1} ${apellido2} al color ${this.colorNombre}`;
+              this.claseRespuesta = 'ok';
+              break;
+            case 2:
+              this.respuestaSetOpinion = `Se creado una nueva opinión de ${nombre} ${apellido1} ${apellido2} con el color ${this.colorNombre}`;
+              this.claseRespuesta = 'ok';
+              break;
+          }
+          this.cargaClientes();
+        }
+      );
+    }
   }
 }
