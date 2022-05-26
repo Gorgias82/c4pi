@@ -23,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 
 import { VistaClientesComponent } from './vista-clientes/vista-clientes.component';
+import { TestComponent } from './test/test.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { VistaClientesComponent } from './vista-clientes/vista-clientes.componen
     NavbarComponent,
     RegistroClienteComponent,
     VistaClientesComponent,
+    TestComponent,
+    AdminComponent,
   ],
   imports: [
     CommonModule,
