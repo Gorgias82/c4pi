@@ -38,7 +38,7 @@ export class VistaClientesComponent implements OnInit {
   claseRespuesta: string = '';
   colorNombre: string = '';
   constructor(
-    private MainService: MainService,
+    public MainService: MainService,
     public loginService: LoginService
   ) {}
 

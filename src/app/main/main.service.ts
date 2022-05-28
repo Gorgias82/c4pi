@@ -4,6 +4,7 @@ import { response } from 'express';
 import { stringify } from 'querystring';
 import { Subject } from 'rxjs';
 import { Cliente } from '../shared/cliente.model';
+import { Empleado } from '../shared/empleado.model';
 import { Opinion } from '../shared/opinion.model';
 
 @Injectable({
@@ -21,7 +22,14 @@ export class MainService {
   OpinionesUpdated = new Subject<Opinion[]>();
   OpinionUpdated = new Subject<number>();
 
+  private respuestaEmpleados: Empleado[] = [];
+  empleadosUpdated = new Subject<Empleado[]>();
+
   constructor(private http: HttpClient) {}
+
+  getEmpleadosUpdatedListener() {
+    return this.empleadosUpdated.asObservable();
+  }
 
   getOpinionUpdatedListener() {
     return this.OpinionUpdated.asObservable();
@@ -40,6 +48,15 @@ export class MainService {
   }
   getEmpleadoUpdatedListener() {
     return this.clienteUpdated.asObservable();
+  }
+
+  getEmpleados(id: { id: number }) {
+    this.http
+      .post<Empleado[]>('http://localhost:3000/empleados', id)
+      .subscribe((response: Empleado[]) => {
+        this.respuestaEmpleados = response;
+        this.empleadosUpdated.next(this.respuestaEmpleados);
+      });
   }
 
   getOpiniones() {

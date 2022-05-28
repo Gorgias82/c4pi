@@ -110,6 +110,7 @@ export class LoginRegistrationComponent implements OnInit {
       // alert("dentro comprobaciones submit nombre vacio " + this.nombreVacio + " error password " + this.errorPassword  + " error nombre " + this.errorNombre + " error hotel " + this.errorHotel + " error departamento " + this.errorDepartamento);
       this.insertaEmpleado();
       this.loginService.data = this.empleado;
+      localStorage.setItem('rango', String(this.empleado.rango));
       localStorage.setItem('id', String(this.empleado.id));
       this.router.navigate(['/home/main']);
       // alert("error insercion empleado " + this.errorInsercionEmpleado);

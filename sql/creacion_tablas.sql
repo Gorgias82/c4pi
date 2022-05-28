@@ -6,69 +6,50 @@ CREATE DATABASE IF NOT EXISTS c4pi;
 USE c4pi;
 
 
-DROP TABLE IF EXISTS c4pi.empleados;
-DROP TABLE IF EXISTS c4pi.clientes;
-DROP TABLE IF EXISTS c4pi.hoteles;
-DROP TABLE IF EXISTS c4pi.departamentos;
-DROP TABLE IF EXISTS c4pi.opiniones;
-DROP TABLE IF EXISTS c4pi.estancias;
+DROP TABLE IF EXISTS c4pi.empleado;
+DROP TABLE IF EXISTS c4pi.cliente;
+DROP TABLE IF EXISTS c4pi.hotele;
+DROP TABLE IF EXISTS c4pi.departamento;
+DROP TABLE IF EXISTS c4pi.opinione;
+DROP TABLE IF EXISTS c4pi.estancia;
 
-CREATE TABLE c4pi.hoteles
+CREATE TABLE c4pi.hotel
 (id SMALLINT UNSIGNED not null AUTO_INCREMENT
 ,nombre VARCHAR(20) not null
 ,cif VARCHAR(15) 
-,createdAt DATETIME
-,updatedAt DATETIME
 ,primary key (id));
 
-CREATE TABLE c4pi.clientes
+CREATE TABLE c4pi.cliente
 (id SMALLINT UNSIGNED not null AUTO_INCREMENT
 ,dni VARCHAR(15) not null
 ,nombre VARCHAR(20) not null
 ,apellido1 VARCHAR(20) not null
 ,apellido2 VARCHAR(20)
-,createdAt DATETIME
-,updatedAt DATETIME
 ,unique (dni)
 ,primary key (id));
 
-CREATE TABLE c4pi.departamentos
+CREATE TABLE c4pi.departamento
 (id SMALLINT UNSIGNED not null AUTO_INCREMENT
 ,nombre VARCHAR(20) not null
 ,id_hotel SMALLINT UNSIGNED not null
-,createdAt DATETIME
-,updatedAt DATETIME
 ,primary key (id)
-,foreign key (id_hotel) REFERENCES hoteles(id) ON DELETE CASCADE);
+,foreign key (id_hotel) REFERENCES hotel(id) ON DELETE CASCADE);
 
-CREATE TABLE c4pi.empleados
+CREATE TABLE c4pi.empleado
 (id SMALLINT UNSIGNED not null AUTO_INCREMENT
 ,id_departamento SMALLINT UNSIGNED not null	
 ,rango TINYINT(1) not null												
 ,login VARCHAR(20) unique
 ,password VARCHAR(80) not null
-,createdAt DATETIME
-,updatedAt DATETIME
+,color TINYINT(1) DEFAULT(4)
 ,primary key (id)
-,foreign key (id_departamento) REFERENCES departamentos(id));
+,foreign key (id_departamento) REFERENCES departamento(id));
 
-CREATE TABLE c4pi.opiniones
+CREATE TABLE c4pi.opinion
 (id_cliente SMALLINT UNSIGNED not null 
 ,id_empleado SMALLINT UNSIGNED not null
 ,color TINYINT(1) not null
 ,fecha DATE not null
-,createdAt DATETIME
-,updatedAt DATETIME
 ,primary key(id_cliente, id_empleado)
-,foreign key (id_cliente) REFERENCES clientes(id) ON DELETE CASCADE
-,foreign key (id_empleado) REFERENCES empleados(id));
-
-CREATE TABLE c4pi.estancias
-(id_cliente SMALLINT UNSIGNED not null 
-,id_hotel SMALLINT UNSIGNED not null
-,fecha DATE not null
-,createdAt DATETIME
-,updatedAt DATETIME
-,primary key(id_cliente, id_hotel)
-,foreign key (id_cliente) REFERENCES clientes(id) ON DELETE CASCADE
-,foreign key (id_hotel) REFERENCES hoteles(id) ON DELETE CASCADE);
+,foreign key (id_cliente) REFERENCES cliente(id) ON DELETE CASCADE
+,foreign key (id_empleado) REFERENCES empleado(id));

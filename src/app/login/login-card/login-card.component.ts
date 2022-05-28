@@ -141,6 +141,7 @@ export class LoginCardComponent implements OnInit {
     if (this.errorNombre === false && this.errorPassword === false) {
       this.loginservice.data = this.empleado;
       localStorage.setItem('id', String(this.empleado.id));
+      localStorage.setItem('rango', String(this.empleado.rango));
       this.router.navigate(['/home/main']);
     }
   }

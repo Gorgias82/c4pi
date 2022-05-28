@@ -19,9 +19,12 @@ export class NavbarComponent implements OnInit {
       { nombre: 'Test de personalidad', link: 'home/test' },
       { nombre: 'Menu administrador', link: 'home/admin' },
     ];
+    console.log(localStorage.getItem('rango'));
+    if (localStorage.getItem('rango') !== '1') {
+      this.menuItems.pop();
+    }
   }
   onLink(e: string) {
-    console.log(e);
     this.router.navigate([e]);
   }
 }

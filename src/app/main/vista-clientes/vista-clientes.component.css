@@ -2,16 +2,7 @@ table{
     width: 100%;
 }
 
-  .rojoT{
-      background-color: red;
-      color: white !important;
-      text-align: center !important;
-      font-size: large;
-        padding-right: 50px !important;
-      min-width: 10%;
-     
-      cursor: pointer;
-  }
+
   .rojoRow{
       border: 2px dotted red;
   }
@@ -27,7 +18,14 @@ table{
   .rojoT:hover, .verdeT:hover, .azulT:hover, .amarilloT:hover{
     border: 5px outset black !important;
   }
-
+  .rojoT{
+    background-color: red;
+    color: white !important;
+    text-align: center !important;
+    min-width: 10%;
+   
+    cursor: pointer;
+}
 
   .azulT{
       background-color: blue;
@@ -35,35 +33,44 @@ table{
       text-align: center !important;
       min-width: 10%;
       cursor: pointer;
-      font-size: large;
   }
   .verdeT{
       background-color: green;
       color: white;
       text-align: center !important;
-      font-size: large;
+
       min-width: 10%;
       cursor: pointer;
   }
   .amarilloT{
       background-color:yellow;
       text-align: center !important;
-      font-size: large;
       min-width: 10%;
       cursor: pointer;
   }
   .total{
     text-align: center !important;
-    font-size: large;
     min-width: 10%;
 
   }
-  #tablaClientes{
-      
-  }
+th, td{
+    font-size: small;
+}
   .error{
       color: red;
   }
   .ok{
       color: green;
   }
+
+  @media screen and (min-width: 480px) {
+   th, td{
+       font-size: medium;
+   }
+  }
+  
+  @media screen and (min-width: 720) {
+    th, td{
+        font-size: large;
+    }
+   }
