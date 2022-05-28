@@ -40,7 +40,7 @@ CREATE TABLE c4pi.empleado
 ,id_departamento SMALLINT UNSIGNED not null	
 ,rango TINYINT(1) not null												
 ,login VARCHAR(20) unique
-,password VARCHAR(80) not null
+,password VARCHAR(255) not null
 ,color TINYINT(1) DEFAULT(4)
 ,primary key (id)
 ,foreign key (id_departamento) REFERENCES departamento(id));
