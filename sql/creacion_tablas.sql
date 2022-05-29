@@ -30,7 +30,7 @@ CREATE TABLE c4pi.cliente
 
 CREATE TABLE c4pi.departamento
 (id SMALLINT UNSIGNED not null AUTO_INCREMENT
-,nombre VARCHAR(20) not null
+,nombre VARCHAR(30) not null
 ,id_hotel SMALLINT UNSIGNED not null
 ,primary key (id)
 ,foreign key (id_hotel) REFERENCES hotel(id) ON DELETE CASCADE);

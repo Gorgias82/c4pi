@@ -178,9 +178,8 @@ app.get("/clientes", (req, res, next) => {
 
 app.post("/empleados", (req, res, next) => {
   const id = req.body.id;
-  console.log(id);
   con.query(
-    "select e.login,e.rango,e.color from c4pi.empleado e JOIN departamento d on e.id_departamento=d.id join hotel h on h.id=d.id_hotel where h.id IN (d.id_hotel) AND d.id IN(SELECT id_departamento from c4pi.empleado where id = ?) AND e.id!=?",
+    "select e.id,e.login,e.rango,e.color,h.nombre as hotel from c4pi.empleado e JOIN departamento d on e.id_departamento=d.id join hotel h on h.id=d.id_hotel where h.id IN (d.id_hotel) AND d.id IN(SELECT id_departamento from c4pi.empleado where id = ?) AND e.id!=?",
     [id, id],
     function (err, result) {
       if (err) throw err;

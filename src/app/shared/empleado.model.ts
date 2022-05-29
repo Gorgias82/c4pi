@@ -3,4 +3,6 @@ export interface Empleado {
   id_departamento: number;
   rango: number;
   login: string;
+  color: number;
+  hotel: string;
 }

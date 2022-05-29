@@ -142,6 +142,7 @@ export class LoginCardComponent implements OnInit {
       this.loginservice.data = this.empleado;
       localStorage.setItem('id', String(this.empleado.id));
       localStorage.setItem('rango', String(this.empleado.rango));
+      localStorage.setItem('color', String(this.empleado.color));
       this.router.navigate(['/home/main']);
     }
   }

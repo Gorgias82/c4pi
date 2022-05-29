@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   menuItems!: Array<{ nombre: string; link: string }>;
   theme: string;
+
   constructor(public router: Router) {
     this.theme = 'green-theme';
   }
@@ -25,6 +26,9 @@ export class NavbarComponent implements OnInit {
     }
   }
   onLink(e: string) {
+    if (e === 'home/login') {
+      localStorage.clear();
+    }
     this.router.navigate([e]);
   }
 }

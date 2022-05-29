@@ -12,17 +12,24 @@
     border-top-right-radius:6px;
     border-bottom-left-radius:6px;
     border-bottom-right-radius:6px;
-    box-shadow: 0px 1px 0px 0px #fff6af;
-    text-shadow: 0px 1px 0px #ffee66;
-    background:linear-gradient(rgba(255, 255, 0, 0.929), #ffe604);
+    box-shadow: 0px 1px 0px 0px #121211;
+    text-shadow: 0px 1px 0px #121210;
+    background:linear-gradient(#FFFFFF, #b9d7d8);
   }
   
   .buttonClass:hover {
-    background: linear-gradient(#23deff, #9064ff);
+    background: linear-gradient(#0e0f0f, #131315);
+    color:#FFFFFF;
+    box-shadow: 0px 1px 0px 0px #f1f1e8;
+    text-shadow: 0px 1px 0px #f4f4f0;
   }
                 
-#icono{
+#icono,#logout{
     font-size:1.8em;
     font-family: "Futura", Arial, Helvetica, sans-serif;
     color: #333333;
+}
+
+#logout:hover{
+cursor: pointer;
 }

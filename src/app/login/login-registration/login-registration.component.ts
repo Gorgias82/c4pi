@@ -28,7 +28,14 @@ export class LoginRegistrationComponent implements OnInit {
   selectedHotel!: number;
   selectedDepartamento!: number;
   departamentos!: Departamento[];
-  empleado: Empleado = { id: -1, id_departamento: -1, rango: 0, login: '' };
+  empleado: Empleado = {
+    id: -1,
+    id_departamento: -1,
+    rango: 0,
+    login: '',
+    color: 4,
+    hotel: '',
+  };
   errorInsercionEmpleado!: boolean;
   constructor(public loginService: LoginService, public router: Router) {
     this.log = new LoginCardComponent(loginService, router);
@@ -112,6 +119,7 @@ export class LoginRegistrationComponent implements OnInit {
       this.loginService.data = this.empleado;
       localStorage.setItem('rango', String(this.empleado.rango));
       localStorage.setItem('id', String(this.empleado.id));
+      localStorage.setItem('color', String(this.empleado.color));
       this.router.navigate(['/home/main']);
       // alert("error insercion empleado " + this.errorInsercionEmpleado);
       // if(this.errorInsercionEmpleado === false){
