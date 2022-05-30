@@ -65,10 +65,14 @@ export class LoginRegistrationComponent implements OnInit {
       .subscribe((message: any) => {
         this.errorInsercionEmpleado = message;
         if (message) {
-          this.empleado.id = message;
+          this.empleado.id = Number(message);
           this.empleado.id_departamento = this.selectedDepartamento;
           this.empleado.rango = 0;
           this.empleado.login = this.nombre;
+          console.log(this.empleado.id);
+          localStorage.setItem('rango', String(this.empleado.rango));
+          localStorage.setItem('id', String(this.empleado.id));
+          localStorage.setItem('color', String(this.empleado.color));
         }
       });
   }
@@ -117,9 +121,7 @@ export class LoginRegistrationComponent implements OnInit {
       // alert("dentro comprobaciones submit nombre vacio " + this.nombreVacio + " error password " + this.errorPassword  + " error nombre " + this.errorNombre + " error hotel " + this.errorHotel + " error departamento " + this.errorDepartamento);
       this.insertaEmpleado();
       this.loginService.data = this.empleado;
-      localStorage.setItem('rango', String(this.empleado.rango));
-      localStorage.setItem('id', String(this.empleado.id));
-      localStorage.setItem('color', String(this.empleado.color));
+
       this.router.navigate(['/home/main']);
       // alert("error insercion empleado " + this.errorInsercionEmpleado);
       // if(this.errorInsercionEmpleado === false){

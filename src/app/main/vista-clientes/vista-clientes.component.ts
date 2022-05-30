@@ -43,6 +43,7 @@ export class VistaClientesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(Number(localStorage.getItem('id')));
     this.cargaClientes();
   }
 
@@ -174,7 +175,6 @@ export class VistaClientesComponent implements OnInit {
       id_empleado: Number(localStorage.getItem('id')),
       cantidad: 0,
     };
-
     switch (color) {
       case 0:
         this.colorNombre = 'rojo';

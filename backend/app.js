@@ -111,6 +111,7 @@ app.post("/insercion_empleado", (req, res, next) => {
       } else {
         respuesta = false;
       }
+      console.log(respuesta);
       res.status(200).json(respuesta);
     }
   );
@@ -203,6 +204,7 @@ app.get("/opiniones", (req, res, next) => {
 app.post("/insertaOpinion", (req, res, next) => {
   const id_cliente = req.body.id_cliente;
   const id_empleado = req.body.id_empleado;
+
   const color = req.body.color;
   con.query(
     "SELECT * FROM c4pi.opinion WHERE id_cliente = ? and id_empleado = ?",
@@ -214,7 +216,6 @@ app.post("/insertaOpinion", (req, res, next) => {
       } else {
         existeOpinion = false;
       }
-      console.log(existeOpinion);
 
       if (existeOpinion) {
         con.query(
