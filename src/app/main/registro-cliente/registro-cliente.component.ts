@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Cliente } from 'src/app/shared/cliente.model';
@@ -9,7 +9,7 @@ import { MainService } from '../main.service';
   templateUrl: './registro-cliente.component.html',
   styleUrls: ['./registro-cliente.component.css'],
 })
-export class RegistroClienteComponent implements OnInit {
+export class RegistroClienteComponent implements OnInit, OnDestroy {
   registroCliente: FormGroup;
   private cliSub!: Subscription;
   private dniSub!: Subscription;
@@ -22,6 +22,10 @@ export class RegistroClienteComponent implements OnInit {
       apellido1: ['', Validators.required],
       apellido2: '',
     });
+  }
+  ngOnDestroy(): void {
+    this.cliSub.unsubscribe();
+    this.dniSub.unsubscribe();
   }
 
   ngOnInit(): void {

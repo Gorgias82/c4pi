@@ -204,7 +204,6 @@ app.get("/opiniones", (req, res, next) => {
 app.post("/insertaOpinion", (req, res, next) => {
   const id_cliente = req.body.id_cliente;
   const id_empleado = req.body.id_empleado;
-
   const color = req.body.color;
   con.query(
     "SELECT * FROM c4pi.opinion WHERE id_cliente = ? and id_empleado = ?",
@@ -216,7 +215,6 @@ app.post("/insertaOpinion", (req, res, next) => {
       } else {
         existeOpinion = false;
       }
-
       if (existeOpinion) {
         con.query(
           "UPDATE c4pi.opinion set color = ? where id_cliente = ? and id_empleado = ?",
