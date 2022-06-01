@@ -248,6 +248,41 @@ app.post("/insertaOpinion", (req, res, next) => {
   );
 });
 
+app.post("/deleteEmpleado", (req, res, next) => {
+  const id = req.body.id;
+  con.query(
+    "DELETE from c4pi.empleado where id = ?",
+    [id],
+    function (err, result, fields) {
+      if (err) throw err;
+      if (result.affectedRows > 0) {
+        respuesta = true;
+      } else {
+        respuesta = false;
+      }
+      res.status(200).json(respuesta);
+    }
+  );
+});
+
+app.post("/setColorEmpleado", (req, res, next) => {
+  const color = req.body.color;
+  const id = req.body.id;
+  con.query(
+    "UPDATE c4pi.empleado set color = ? where id = ?",
+    [color, id],
+    function (err, result, fields) {
+      if (err) throw err;
+      if (result.affectedRows > 0) {
+        respuesta = true;
+      } else {
+        respuesta = false;
+      }
+      res.status(200).json(respuesta);
+    }
+  );
+});
+
 module.exports = app;
 
 server.listen(process.env.PORT || 3000);

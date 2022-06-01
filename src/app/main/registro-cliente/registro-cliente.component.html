@@ -1,5 +1,5 @@
 <form [formGroup]="registroCliente" (ngSubmit)="onSubmit(registroCliente)">
-    <mat-card class="blue-theme">
+    <mat-card [ngClass]="theme">
         <mat-card-header>
             <mat-card-title>
                 Crear nuevo cliente

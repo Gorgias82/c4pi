@@ -146,9 +146,15 @@ export class LoginCardComponent implements OnInit, OnDestroy {
       this.router.navigate(['/home/main']);
     }
   }
-  ngOnDestroy(){
-    this.loginSub.unsubscribe();
-    this.passwordSub.unsubscribe();
-    this.EmpleadoSub.unsubscribe();
+  ngOnDestroy() {
+    if (this.loginSub !== undefined) {
+      this.loginSub.unsubscribe();
+    }
+    if (this.passwordSub !== undefined) {
+      this.passwordSub.unsubscribe();
+    }
+    if (this.EmpleadoSub !== undefined) {
+      this.EmpleadoSub.unsubscribe();
+    }
   }
 }

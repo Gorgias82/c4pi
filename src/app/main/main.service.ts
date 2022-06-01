@@ -21,12 +21,22 @@ export class MainService {
   private respuestaOpiniones!: Opinion[];
   OpinionesUpdated = new Subject<Opinion[]>();
   OpinionUpdated = new Subject<number>();
+  setColorUpdated = new Subject<boolean>();
+  deleteEmpleadoUpdated = new Subject<boolean>();
+  private respuestaSetColorEmpleado!: boolean;
+  private respuestaDeleteEmpleado!: boolean;
 
   private respuestaEmpleados: Empleado[] = [];
   empleadosUpdated = new Subject<Empleado[]>();
 
   constructor(private http: HttpClient) {}
 
+  getSetColorUpdatedListener() {
+    return this.setColorUpdated.asObservable();
+  }
+  getDeleteEmpleadoUpdated() {
+    return this.deleteEmpleadoUpdated.asObservable();
+  }
   getEmpleadosUpdatedListener() {
     return this.empleadosUpdated.asObservable();
   }
@@ -48,6 +58,23 @@ export class MainService {
   }
   getEmpleadoUpdatedListener() {
     return this.clienteUpdated.asObservable();
+  }
+
+  setColorEmpleado(datos: { id: number; color: number }) {
+    this.http
+      .post<boolean>('http://localhost:3000/setColorEmpleado', datos)
+      .subscribe((response: boolean) => {
+        this.respuestaSetColorEmpleado = response;
+        this.setColorUpdated.next(this.respuestaSetColorEmpleado);
+      });
+  }
+  deleteEmpleado(datos: { id: number }) {
+    this.http
+      .post<boolean>('http://localhost.3000/deleteEmpleado', datos)
+      .subscribe((response: boolean) => {
+        this.respuestaDeleteEmpleado = response;
+        this.deleteEmpleadoUpdated.next(this.respuestaDeleteEmpleado);
+      });
   }
 
   getEmpleados(id: { id: number }) {

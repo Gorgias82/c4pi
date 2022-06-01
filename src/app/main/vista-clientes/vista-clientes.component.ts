@@ -42,7 +42,6 @@ export class VistaClientesComponent implements OnInit, OnDestroy {
     public loginService: LoginService
   ) {}
 
-
   ngOnInit(): void {
     console.log(Number(localStorage.getItem('id')));
     this.cargaClientes();
@@ -147,8 +146,8 @@ export class VistaClientesComponent implements OnInit, OnDestroy {
         break;
     }
   }
-  
-    onColorLeave(e: any) {
+
+  onColorLeave(e: any) {
     let fila = e.target.parentNode;
     fila.className = fila.className.replace('rojoRow', '');
     fila.className = fila.className.replace('azulRow', '');
@@ -159,7 +158,6 @@ export class VistaClientesComponent implements OnInit, OnDestroy {
     let filterValue = e.target.value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 
   onOpinion(
     color: number,
@@ -220,8 +218,14 @@ export class VistaClientesComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy(): void {
-    this.clientesSub.unsubscribe();
-    this.opinionesSub.unsubscribe();
-    this.opinionSub.unsubscribe();
+    if (this.clientesSub !== undefined) {
+      this.clientesSub.unsubscribe();
+    }
+    if (this.opinionSub !== undefined) {
+      this.opinionSub.unsubscribe();
+    }
+    if (this.opinionesSub !== undefined) {
+      this.opinionesSub.unsubscribe();
+    }
   }
 }

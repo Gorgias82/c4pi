@@ -23,6 +23,17 @@ mat-label{
 .tituloIncorrecto{
     color: red !important;
 }
+.ok{
+    color: green;
+    font-size: large;
+}
+.black{
+    
+    font-size: 2em;
+    color: #F7F9F9;
+    background-color: rgba(0, 0, 0, 0.75);
+    
+}
 
 mat-form-field{
     width: 50%;

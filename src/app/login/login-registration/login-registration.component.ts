@@ -12,7 +12,7 @@ import { LoginService } from '../login.service';
   templateUrl: './login-registration.component.html',
   styleUrls: ['./login-registration.component.css'],
 })
-export class LoginRegistrationComponent implements OnInit, OnDestroy{
+export class LoginRegistrationComponent implements OnInit, OnDestroy {
   log!: LoginCardComponent;
   nombre!: string;
   private loginSub!: Subscription;
@@ -40,7 +40,6 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy{
   constructor(public loginService: LoginService, public router: Router) {
     this.log = new LoginCardComponent(loginService, router);
   }
- 
 
   ngOnInit(): void {
     this.log.loginservice.getHoteles();
@@ -141,7 +140,11 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.loginSub.unsubscribe();
-    this.empSub.unsubscribe();
+    if (this.loginSub !== undefined) {
+      this.loginSub.unsubscribe();
+    }
+    if (this.empSub !== undefined) {
+      this.empSub.unsubscribe();
+    }
   }
 }

@@ -15,6 +15,9 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
   private dniSub!: Subscription;
   errorInsercionCliente!: boolean;
   ExisteDni!: boolean;
+  theme: string = '';
+  themes!: string[];
+  indiceColor = 4;
   constructor(private fb: FormBuilder, public mainService: MainService) {
     this.registroCliente = this.fb.group({
       dni: ['', Validators.required],
@@ -23,13 +26,15 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
       apellido2: '',
     });
   }
-  ngOnDestroy(): void {
-    this.cliSub.unsubscribe();
-    this.dniSub.unsubscribe();
-  }
 
   ngOnInit(): void {
     console.log(this.registroCliente);
+    this.themes = ['red-theme', 'green-theme', 'blue-theme', 'yellow-theme'];
+    this.indiceColor = localStorage.getItem('color') as unknown as number;
+    console.log('indice color : ' + this.indiceColor);
+    if (this.indiceColor < 4) {
+      this.theme = this.themes[this.indiceColor];
+    }
   }
 
   insertaCliente() {
@@ -73,5 +78,13 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
         this.insertaCliente();
       }
     }, 1000);
+  }
+  ngOnDestroy(): void {
+    if (this.cliSub !== undefined) {
+      this.cliSub.unsubscribe();
+    }
+    if (this.dniSub !== undefined) {
+      this.dniSub.unsubscribe();
+    }
   }
 }

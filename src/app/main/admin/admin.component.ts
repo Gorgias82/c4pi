@@ -37,7 +37,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     console.log('empleado a eliminar' + id);
   }
   ngOnDestroy(): void {
-    this.empleadosSub.unsubscribe();
+    if (this.empleadosSub !== undefined) {
+      this.empleadosSub.unsubscribe();
+    }
   }
-
 }

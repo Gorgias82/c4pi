@@ -1,44 +1,51 @@
 import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Console } from 'console';
 import * as e from 'express';
-
+import { Subscription } from 'rxjs';
+import { MainService } from '../main.service';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
-
-  panelOpenState !: boolean;
+  panelOpenState!: boolean;
   numbers: number[] = [];
   test: FormGroup;
-  errorNumeros: boolean[] = []
+  errorNumeros: boolean[] = [];
   testIncompleto: boolean = true;
-  constructor(private fb: FormBuilder) {
+  setColorEmpleadoSub!: Subscription;
+  respuestaSetColor: string = '';
+  errorSetColor!: boolean;
+  constructor(private fb: FormBuilder, private mainService: MainService) {
     this.test = this.fb.group({});
     // this.test.patchValue({"3B" : [Validators.required]});
     let key;
     let control: FormControl;
     for (let i = 1; i < 7; i++) {
-      key = i + "A";
+      key = i + 'A';
       control = new FormControl(0, Validators.compose([Validators.required]));
       this.test.setControl(key, control);
-      key = i + "B";
+      key = i + 'B';
       // , this.createCheckNumberValidator(key)
       control = new FormControl(0, Validators.compose([Validators.required]));
       this.test.setControl(key, control);
-    };
+    }
   }
   onChangeNumber(key: string) {
     let element;
     let value;
     if (this.test.get(key) !== null) {
       element = this.test.get(key);
-
     }
     if (element !== null) {
       value = element?.value;
@@ -50,21 +57,18 @@ export class TestComponent implements OnInit {
     let error: boolean = false;
     let indiceLinea: number = 0;
 
-
     if (letra === 'A') {
       valuePar = this.test.get(number + 'B');
     } else {
       valuePar = this.test.get(number + 'A');
     }
 
-
     if (valuePar !== null) {
       if (value + valuePar.value === 3) {
-
         numberValid = true;
       }
 
-      error = (value + valuePar.value) !== 3;
+      error = value + valuePar.value !== 3;
       switch (number) {
         case '1':
           this.errorNumeros[0] = error;
@@ -94,8 +98,12 @@ export class TestComponent implements OnInit {
     }
 
     let indice2 = indiceLinea % 2 === 0 ? indiceLinea + 1 : indiceLinea - 1;
-    const linea = document.getElementsByClassName('mat-form-field-ripple')[indiceLinea];
-    const linea2 = document.getElementsByClassName('mat-form-field-ripple')[indice2];
+    const linea = document.getElementsByClassName('mat-form-field-ripple')[
+      indiceLinea
+    ];
+    const linea2 = document.getElementsByClassName('mat-form-field-ripple')[
+      indice2
+    ];
     const titulo = document.getElementsByTagName('mat-label')[indiceLinea];
     const titulo2 = document.getElementsByTagName('mat-label')[indice2];
     if (linea !== undefined && linea2 !== undefined) {
@@ -134,7 +142,6 @@ export class TestComponent implements OnInit {
   //       valuePar = this.test.get(number + 'A');
   //     }
 
-
   //     if (valuePar !== null) {
   //       if (value + valuePar.value === 3) {
 
@@ -143,19 +150,19 @@ export class TestComponent implements OnInit {
 
   //       error = (value + valuePar.value) !== 3;
   //       switch (number) {
-  //         case '1':        
-  //           this.errorNumeros[0] = error;  
+  //         case '1':
+  //           this.errorNumeros[0] = error;
   //           indiceLinea = letra === 'B'? 0 : 1;
   //           break;
-  //         case '2':     
+  //         case '2':
   //           this.errorNumeros[1] = error;
   //           indiceLinea = letra === 'B'? 2 : 3;
   //           break;
-  //         case '3':       
+  //         case '3':
   //           this.errorNumeros[2] = error;
   //           indiceLinea = letra === 'B'? 4 : 5;
   //           break;
-  //         case '4':   
+  //         case '4':
   //           this.errorNumeros[3] = error;
   //           indiceLinea = letra === 'B'? 6 : 7;
   //           break;
@@ -184,7 +191,6 @@ export class TestComponent implements OnInit {
   //       titulo2.className = error? 'tituloIncorrecto' : 'tituloCorrecto';
   //     }
 
-
   //     return numberValid ? { checkNumber: true } : null;
   //   }
   // }
@@ -198,7 +204,6 @@ export class TestComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-
     let valorA = 0;
     let valorB = 0;
     let relaciones = 0;
@@ -206,6 +211,7 @@ export class TestComponent implements OnInit {
     let extrovertido = 0;
     let introvertido = 0;
     let color = -1;
+    let colorNombre: string;
     for (let i = 1; i < 7; i++) {
       valorA = this.test.get(i + 'A')?.value as unknown as number;
       valorB = this.test.get(i + 'B')?.value as unknown as number;
@@ -235,20 +241,48 @@ export class TestComponent implements OnInit {
           introvertido += valorA;
           break;
       }
-
     }
 
-    if( introvertido > extrovertido){
+    if (introvertido > extrovertido) {
       //verde introvertido+relaciones
       //azul introvertido+tareas
       color = relaciones > tareas ? 1 : 2;
-    }else{
+    } else {
       //amarillo extrovertido+relaciones
       //rojo extrovertido+tareas
       color = relaciones > tareas ? 3 : 0;
     }
     console.log(color);
-
-
+    switch (color) {
+      case 0:
+        colorNombre = 'rojo';
+        break;
+      case 1:
+        colorNombre = 'verde';
+        break;
+      case 2:
+        colorNombre = 'azul';
+        break;
+      case 3:
+        colorNombre = 'amarillo';
+        break;
+    }
+    let id_empleado = localStorage.getItem('id') as unknown as number;
+    this.mainService.setColorEmpleado({ id: id_empleado, color: color });
+    this.setColorEmpleadoSub = this.mainService
+      .getSetColorUpdatedListener()
+      .subscribe((respuesta: boolean) => {
+        if (respuesta) {
+          localStorage.setItem('color', color as unknown as string);
+          this.errorSetColor = false;
+          this.respuestaSetColor = `Se ha actualizado correctamente su color a ${colorNombre}`;
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          this.errorSetColor = true;
+          this.respuestaSetColor = 'No se ha podido actualizar su color';
+        }
+      });
   }
 }
