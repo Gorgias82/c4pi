@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, throwIfEmpty } from 'rxjs';
 import { Empleado } from 'src/app/shared/empleado.model';
@@ -14,7 +14,7 @@ import { LoginService } from '../login.service';
   templateUrl: './login-card.component.html',
   styleUrls: ['./login-card.component.css'],
 })
-export class LoginCardComponent implements OnInit {
+export class LoginCardComponent implements OnInit, OnDestroy {
   fuente!: string;
   fuentes!: Array<string>;
   theme!: string;
@@ -145,5 +145,10 @@ export class LoginCardComponent implements OnInit {
       localStorage.setItem('color', String(this.empleado.color));
       this.router.navigate(['/home/main']);
     }
+  }
+  ngOnDestroy(){
+    this.loginSub.unsubscribe();
+    this.passwordSub.unsubscribe();
+    this.EmpleadoSub.unsubscribe();
   }
 }

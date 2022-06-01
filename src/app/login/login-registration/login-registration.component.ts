@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Empleado } from 'src/app/shared/empleado.model';
@@ -12,7 +12,7 @@ import { LoginService } from '../login.service';
   templateUrl: './login-registration.component.html',
   styleUrls: ['./login-registration.component.css'],
 })
-export class LoginRegistrationComponent implements OnInit {
+export class LoginRegistrationComponent implements OnInit, OnDestroy{
   log!: LoginCardComponent;
   nombre!: string;
   private loginSub!: Subscription;
@@ -40,6 +40,7 @@ export class LoginRegistrationComponent implements OnInit {
   constructor(public loginService: LoginService, public router: Router) {
     this.log = new LoginCardComponent(loginService, router);
   }
+ 
 
   ngOnInit(): void {
     this.log.loginservice.getHoteles();
@@ -137,5 +138,10 @@ export class LoginRegistrationComponent implements OnInit {
     setTimeout(() => {
       this.redireccionar();
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    this.loginSub.unsubscribe();
+    this.empSub.unsubscribe();
   }
 }

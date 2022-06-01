@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Empleado } from 'src/app/shared/empleado.model';
 import { MainService } from '../main.service';
@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   empleados: Empleado[] = [];
   hotel: string = '';
   displayedColumns: string[] = ['login', 'borrado'];
@@ -36,4 +36,8 @@ export class AdminComponent implements OnInit {
   deleteEmpleado(id: string) {
     console.log('empleado a eliminar' + id);
   }
+  ngOnDestroy(): void {
+    this.empleadosSub.unsubscribe();
+  }
+
 }

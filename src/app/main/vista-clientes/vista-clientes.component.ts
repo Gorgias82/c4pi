@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { MainService } from '../main.service';
   templateUrl: './vista-clientes.component.html',
   styleUrls: ['./vista-clientes.component.css'],
 })
-export class VistaClientesComponent implements OnInit {
+export class VistaClientesComponent implements OnInit, OnDestroy {
   clientes: Cliente[] = [];
   opiniones: Opinion[] = [];
   private clientesSub!: Subscription;
@@ -41,6 +41,7 @@ export class VistaClientesComponent implements OnInit {
     public MainService: MainService,
     public loginService: LoginService
   ) {}
+
 
   ngOnInit(): void {
     console.log(Number(localStorage.getItem('id')));
@@ -217,5 +218,10 @@ export class VistaClientesComponent implements OnInit {
         }
       );
     }
+  }
+  ngOnDestroy(): void {
+    this.clientesSub.unsubscribe();
+    this.opinionesSub.unsubscribe();
+    this.opinionSub.unsubscribe();
   }
 }
