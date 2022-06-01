@@ -124,10 +124,6 @@ export class VistaClientesComponent implements OnInit {
         : cliente.amarillo.porcentaje;
     }
     this.dataSource = new MatTableDataSource(this.clientes);
-    // setTimeout(() => {
-    //   console.log(this.clientes);
-    //   this.dataSource = new MatTableDataSource(this.clientes);
-    // }, 1000);
   }
 
   onColor(e: any) {
@@ -150,17 +146,19 @@ export class VistaClientesComponent implements OnInit {
         break;
     }
   }
-  applyFilter(e: any) {
-    let filterValue = e.target.value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  onColorLeave(e: any) {
+  
+    onColorLeave(e: any) {
     let fila = e.target.parentNode;
     fila.className = fila.className.replace('rojoRow', '');
     fila.className = fila.className.replace('azulRow', '');
     fila.className = fila.className.replace('verdeRow', '');
     fila.className = fila.className.replace('amarilloRow', '');
   }
+  applyFilter(e: any) {
+    let filterValue = e.target.value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
   onOpinion(
     color: number,

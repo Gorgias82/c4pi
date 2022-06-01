@@ -28,6 +28,9 @@
 
         <!-- <a routerLink="item.link" queryParamsHandling="preserve"></a> -->
         <mat-menu #dropMenu="matMenu">
+            <button mat-menu-item (click)="onLink('home/login')">
+                Logout
+            </button>
             <ng-container class="buttonClass" *ngFor="let item of menuItems">
                 <button mat-menu-item (click)="onLink(item.link)">
                     {{item.nombre}}

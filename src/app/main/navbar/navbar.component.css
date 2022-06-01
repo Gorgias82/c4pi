@@ -1,4 +1,3 @@
-
 .buttonClass {
     font-size:1.2em;
     font-family: "Futura", Arial, Helvetica, sans-serif;
@@ -33,3 +32,13 @@
 #logout:hover{
 cursor: pointer;
 }
+
+#logout{
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  #logout{
+      display: block;
+  }
+ }

@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   {
     path: 'home/main',
     component: MainCardComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: 'home/test',

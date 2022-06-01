@@ -21,10 +21,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { VistaClientesComponent } from './vista-clientes/vista-clientes.component';
 import { TestComponent } from './test/test.component';
 import { AdminComponent } from './admin/admin.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,9 @@ import { AdminComponent } from './admin/admin.component';
     MatToolbarModule,
     MatTableModule,
     MatIconModule,
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatRadioModule
   ],
 })
 export class MainModule {}
