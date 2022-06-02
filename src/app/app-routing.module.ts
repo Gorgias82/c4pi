@@ -13,17 +13,12 @@ const appRoutes: Routes = [
     pathMatch: 'full',
     redirectTo: 'home/login',
   },
-  // {
-  //     path: '**',
-  //     redirectTo: 'home/login'
-
-  // },
   { path: 'home/login', component: LoginCardComponent },
   { path: 'home/registro', component: LoginRegistrationComponent },
   {
     path: 'home/main',
     component: MainCardComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'home/test',
@@ -35,7 +30,11 @@ const appRoutes: Routes = [
     component: AdminComponent,
     canActivate: [AuthGuardService],
   },
-  // ,canActivate: [AuthGuardService]
+  // ,canActivate: [AuthGuarderviceS]
+  {
+    path: '**',
+    redirectTo: 'home/login',
+  },
 ];
 
 @NgModule({

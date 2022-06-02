@@ -5,6 +5,11 @@
         </div>
 
     </div>
+    <div class="row align-items-center">
+        <div class="col-12 text-center">
+            <h3 class="error" *ngIf="errorDelete">{{respuestaDelete}}</h3>
+        </div>
+    </div>
     <div class="row justify-content-center gx-2">
         <div class="col-12 text-center">
             <h1>Lista de empleados del hotel {{hotel}}</h1>
@@ -25,8 +30,8 @@
                 </ng-container>
                 <ng-container matColumnDef="borrado">
                     <th mat-header-cell *matHeaderCellDef> Eliminar empleado </th>
-                    <td mat-cell *matCellDef="let empleado"> <svg (click)="deleteEmpleado(empleado.id)" id="bin"
-                            xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    <td mat-cell *matCellDef="let empleado"> <svg (click)="deleteEmpleado(empleado.id, empleado.login)"
+                            id="bin" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                             class="bi bi-trash" viewBox="0 0 16 16">
                             <path
                                 d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />

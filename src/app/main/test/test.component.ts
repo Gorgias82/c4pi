@@ -276,9 +276,9 @@ export class TestComponent implements OnInit {
           localStorage.setItem('color', color as unknown as string);
           this.errorSetColor = false;
           this.respuestaSetColor = `Se ha actualizado correctamente su color a ${colorNombre}`;
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 2000);
         } else {
           this.errorSetColor = true;
           this.respuestaSetColor = 'No se ha podido actualizar su color';

@@ -25,8 +25,8 @@ export class AuthGuardService implements CanActivate {
 
   usuarioAutentificado() {
     if (
-      this.loginService.data === undefined &&
-      localStorage.getItem('id') === undefined
+      localStorage.getItem('id') === undefined ||
+      localStorage.getItem('id') === null
     ) {
       return false;
     } else {

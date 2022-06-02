@@ -34,7 +34,7 @@ export class MainService {
   getSetColorUpdatedListener() {
     return this.setColorUpdated.asObservable();
   }
-  getDeleteEmpleadoUpdated() {
+  getDeleteEmpleadoUpdatedListener() {
     return this.deleteEmpleadoUpdated.asObservable();
   }
   getEmpleadosUpdatedListener() {
@@ -70,7 +70,7 @@ export class MainService {
   }
   deleteEmpleado(datos: { id: number }) {
     this.http
-      .post<boolean>('http://localhost.3000/deleteEmpleado', datos)
+      .post<boolean>('http://localhost:3000/deleteEmpleado', datos)
       .subscribe((response: boolean) => {
         this.respuestaDeleteEmpleado = response;
         this.deleteEmpleadoUpdated.next(this.respuestaDeleteEmpleado);
