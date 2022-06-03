@@ -1,7 +1,7 @@
 <h2 [ngClass]="claseRespuesta">{{respuestaSetOpinion}}</h2>
 
 <mat-form-field>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Busqueda">
 </mat-form-field>
 
 <table id="tablaClientes" mat-table [dataSource]="dataSource" class="mat-elevation-z10">

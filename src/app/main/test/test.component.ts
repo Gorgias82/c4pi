@@ -41,21 +41,27 @@ export class TestComponent implements OnInit {
       this.test.setControl(key, control);
     }
   }
+  
+    ngOnInit(): void {
+    this.numbers = [0, 1, 2, 3];
+    this.panelOpenState = false;
+  }
+  
   onChangeNumber(key: string) {
     let element;
     let value;
-    if (this.test.get(key) !== null) {
-      element = this.test.get(key);
-    }
-    if (element !== null) {
-      value = element?.value;
-    }
     let number = key.charAt(0);
     let letra = key.charAt(1);
     let valuePar;
     let numberValid = false;
     let error: boolean = false;
     let indiceLinea: number = 0;
+    if (this.test.get(key) !== null) {
+      element = this.test.get(key);
+    }
+    if (element !== null) {
+      value = element?.value;
+    }
 
     if (letra === 'A') {
       valuePar = this.test.get(number + 'B');
@@ -127,81 +133,8 @@ export class TestComponent implements OnInit {
       this.testIncompleto = true;
     }
   }
-  // createCheckNumberValidator(key: string): ValidatorFn {
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const value = control.value as unknown as number;
-  //     let number = key.charAt(0);
-  //     let letra = key.charAt(1);
-  //     let valuePar;
-  //     let numberValid = false;
-  //     let error :boolean = false;
-  //     let indiceLinea : number = 0;
-  //     if (letra === 'A') {
-  //       valuePar = this.test.get(number + 'B');
-  //     } else {
-  //       valuePar = this.test.get(number + 'A');
-  //     }
 
-  //     if (valuePar !== null) {
-  //       if (value + valuePar.value === 3) {
 
-  //         numberValid = true;
-  //       }
-
-  //       error = (value + valuePar.value) !== 3;
-  //       switch (number) {
-  //         case '1':
-  //           this.errorNumeros[0] = error;
-  //           indiceLinea = letra === 'B'? 0 : 1;
-  //           break;
-  //         case '2':
-  //           this.errorNumeros[1] = error;
-  //           indiceLinea = letra === 'B'? 2 : 3;
-  //           break;
-  //         case '3':
-  //           this.errorNumeros[2] = error;
-  //           indiceLinea = letra === 'B'? 4 : 5;
-  //           break;
-  //         case '4':
-  //           this.errorNumeros[3] = error;
-  //           indiceLinea = letra === 'B'? 6 : 7;
-  //           break;
-  //         case '5':
-  //           this.errorNumeros[4] = error;
-  //           indiceLinea = letra === 'B'? 8 : 9;
-  //           break;
-  //         case '6':
-  //           this.errorNumeros[5] = error;
-  //           indiceLinea = letra === 'B'? 10 :11;
-  //           break;
-  //       }
-  //     }
-
-  //     let indice2 = indiceLinea % 2 === 0? indiceLinea +1 : indiceLinea -1;
-  //     const linea = document.getElementsByClassName('mat-form-field-ripple')[indiceLinea] ;
-  //     const linea2 = document.getElementsByClassName('mat-form-field-ripple')[indice2] ;
-  //     const titulo = document.getElementsByTagName('mat-label')[indiceLinea] ;
-  //     const titulo2 = document.getElementsByTagName('mat-label')[indice2] ;
-  //     if(linea !== undefined && linea2 !== undefined){
-  //       linea.className = error? 'lineaIncorrecta' : 'lineaCorrecta';
-  //       linea2.className = error? 'lineaIncorrecta' : 'lineaCorrecta';
-  //     }
-  //     if(titulo !== undefined && titulo2 !== undefined){
-  //       titulo.className = error? 'tituloIncorrecto' : 'tituloCorrecto';
-  //       titulo2.className = error? 'tituloIncorrecto' : 'tituloCorrecto';
-  //     }
-
-  //     return numberValid ? { checkNumber: true } : null;
-  //   }
-  // }
-
-  ngOnInit(): void {
-    // for(let i = 0; i <6;i++){
-    //   this.errorNumeros.push(false);
-    // }
-    this.numbers = [0, 1, 2, 3];
-    this.panelOpenState = false;
-  }
 
   onSubmit(form: FormGroup) {
     let valorA = 0;
@@ -284,5 +217,11 @@ export class TestComponent implements OnInit {
           this.respuestaSetColor = 'No se ha podido actualizar su color';
         }
       });
+  }
+
+  ngOnDestroy(){
+    if(this.setColorEmpleadoSub !== undefined){
+      this.setColorEmpleadoSub.unsubscribe();
+    }
   }
 }

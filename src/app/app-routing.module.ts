@@ -23,14 +23,13 @@ const appRoutes: Routes = [
   {
     path: 'home/test',
     component: TestComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: 'home/admin',
     component: AdminComponent,
     canActivate: [AuthGuardService],
   },
-  // ,canActivate: [AuthGuarderviceS]
   {
     path: '**',
     redirectTo: 'home/login',

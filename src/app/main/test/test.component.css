@@ -1,5 +1,3 @@
-
-
 mat-label{
     font-size: large;
 }
@@ -16,7 +14,6 @@ mat-label{
     background-color: red !important;
     color: red !important;
 }
-
 .tituloCorrecto{
     color: blue !important;
 }
@@ -27,14 +24,11 @@ mat-label{
     color: green;
     font-size: large;
 }
-.black{
-    
+.black{   
     font-size: 2em;
     color: #F7F9F9;
-    background-color: rgba(0, 0, 0, 0.75);
-    
+    background-color: rgba(0, 0, 0, 0.75);   
 }
-
 mat-form-field{
     width: 50%;
 }
@@ -52,8 +46,7 @@ span{
     }
     input{
         margin-right: 20px;
-        width: 10%;
-        
+        width: 10%;     
     }
     span{
         margin-left: 60px;
