@@ -25,6 +25,7 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   password!: string;
   password2!: string;
   errorPassword!: boolean;
+  passwordVacio!: boolean;
   selectedHotel!: number;
   selectedDepartamento!: number;
   departamentos!: Departamento[];
@@ -101,8 +102,11 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   mandarPassword() {
     if (this.password !== undefined && this.password2 !== undefined) {
       if (this.password.length > 0 && this.password2.length > 0) {
+        this.passwordVacio = false;
         this.errorPassword = this.password == this.password2 ? false : true;
       }
+    } else {
+      this.passwordVacio = true;
     }
   }
   redireccionar() {
