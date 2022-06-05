@@ -33,7 +33,7 @@ export class LoginService {
 
   getEmpleado(nombre: { nombre: string }) {
     this.http
-      .post<Empleado>('http://localhost:3000/getEmpleado', nombre)
+      .post<Empleado>('http://localhost:3000/empleado/getEmpleado', nombre)
       .subscribe((empData) => {
         this.empleado = empData;
         this.empleadoLoginUpdated.next(this.empleado);
@@ -42,7 +42,7 @@ export class LoginService {
 
   getHoteles() {
     this.http
-      .get<Hotel[]>('http://localhost:3000/hoteles')
+      .get<Hotel[]>('http://localhost:3000/hotel/hoteles')
       .subscribe((hotelData) => {
         this.hoteles = hotelData;
         this.hotelUpdated.next(this.hoteles);
@@ -50,7 +50,10 @@ export class LoginService {
   }
   getDepartamentos(idHotel: { envio: number }) {
     this.http
-      .post<Departamento[]>('http://localhost:3000/departamentos', idHotel)
+      .post<Departamento[]>(
+        'http://localhost:3000/departamento/departamentos',
+        idHotel
+      )
       .subscribe((depData) => {
         this.departamentos = depData;
         this.DepartamentoUpdated.next(this.departamentos);
@@ -80,7 +83,10 @@ export class LoginService {
   }
   sendLogin(login: { envio: string }) {
     this.http
-      .post<boolean>('http://localhost:3000/comprobacion_nombre', login)
+      .post<boolean>(
+        'http://localhost:3000/empleado/comprobacion_nombre',
+        login
+      )
       .subscribe((responseData: boolean) => {
         this.respuestaNombre = responseData;
         this.loginUpdated.next(this.respuestaNombre);
@@ -89,7 +95,10 @@ export class LoginService {
 
   sendPassword(password: { nombre: string; password: string }) {
     this.http
-      .post<boolean>('http://localhost:3000/comprobacion_password', password)
+      .post<boolean>(
+        'http://localhost:3000/empleado/comprobacion_password',
+        password
+      )
       .subscribe((responseData: boolean) => {
         this.respuestaPassword = responseData;
         this.passwordUpdated.next(this.respuestaPassword);
@@ -102,7 +111,10 @@ export class LoginService {
     password: string;
   }) {
     this.http
-      .post<boolean>('http://localhost:3000/insercion_empleado', empleado)
+      .post<boolean>(
+        'http://localhost:3000/empleado/insercion_empleado',
+        empleado
+      )
       .subscribe((responseData: boolean) => {
         this.respuestaEmpleado = responseData;
         this.empleadoUpdated.next(this.respuestaEmpleado);

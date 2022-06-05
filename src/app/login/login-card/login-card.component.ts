@@ -99,53 +99,47 @@ export class LoginCardComponent implements OnInit, OnDestroy {
     return this.nombre;
   }
 
-  mandarNombre() {
+  onSubmit() {
     this.loginservice.sendLogin({ envio: this.nombre });
     this.loginSub = this.loginservice
       .getLoginUpdatedListener()
       .subscribe((message: boolean) => {
         this.errorNombre = !message;
-      });
-  }
-  mandarPassword() {
-    this.loginservice.sendPassword({
-      nombre: this.nombre,
-      password: this.password,
-    });
-    this.passwordSub = this.loginservice
-      .getPasswordUpdatedListener()
-      .subscribe((message: boolean) => {
-        this.errorPassword = !message;
-        if (message) {
-          this.loginservice.getEmpleado({ nombre: this.nombre });
-          this.EmpleadoSub = this.loginservice
-            .getEmpleadoLoginUpdatedListener()
-            .subscribe((emp: Empleado) => {
-              this.empleado = emp;
+        if (!this.errorNombre) {
+          this.loginservice.sendPassword({
+            nombre: this.nombre,
+            password: this.password,
+          });
+          this.passwordSub = this.loginservice
+            .getPasswordUpdatedListener()
+            .subscribe((message: boolean) => {
+              this.errorPassword = !message;
+              if (message) {
+                this.loginservice.getEmpleado({ nombre: this.nombre });
+                this.EmpleadoSub = this.loginservice
+                  .getEmpleadoLoginUpdatedListener()
+                  .subscribe((emp: Empleado) => {
+                    this.empleado = emp;
+                    if (this.empleado.id !== undefined) {
+                      this.loginservice.data = this.empleado;
+                      localStorage.setItem('id', String(this.empleado.id));
+                      localStorage.setItem(
+                        'rango',
+                        String(this.empleado.rango)
+                      );
+                      localStorage.setItem(
+                        'color',
+                        String(this.empleado.color)
+                      );
+                      this.router.navigate(['/home/main']);
+                    }
+                  });
+              }
             });
         }
       });
   }
 
-  onSubmit() {
-    this.mandarNombre();
-    if (!this.errorNombre) {
-      this.mandarPassword();
-    }
-
-    setTimeout(() => {
-      this.redireccionar();
-    }, 1000);
-  }
-  redireccionar() {
-    if (this.errorNombre === false && this.errorPassword === false) {
-      this.loginservice.data = this.empleado;
-      localStorage.setItem('id', String(this.empleado.id));
-      localStorage.setItem('rango', String(this.empleado.rango));
-      localStorage.setItem('color', String(this.empleado.color));
-      this.router.navigate(['/home/main']);
-    }
-  }
   ngOnDestroy() {
     if (this.loginSub !== undefined) {
       this.loginSub.unsubscribe();

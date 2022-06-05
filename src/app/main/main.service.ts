@@ -62,7 +62,7 @@ export class MainService {
 
   setColorEmpleado(datos: { id: number; color: number }) {
     this.http
-      .post<boolean>('http://localhost:3000/setColorEmpleado', datos)
+      .post<boolean>('http://localhost:3000/empleado/setColorEmpleado', datos)
       .subscribe((response: boolean) => {
         this.respuestaSetColorEmpleado = response;
         this.setColorUpdated.next(this.respuestaSetColorEmpleado);
@@ -70,7 +70,7 @@ export class MainService {
   }
   deleteEmpleado(datos: { id: number }) {
     this.http
-      .post<boolean>('http://localhost:3000/deleteEmpleado', datos)
+      .post<boolean>('http://localhost:3000/empleado/deleteEmpleado', datos)
       .subscribe((response: boolean) => {
         this.respuestaDeleteEmpleado = response;
         this.deleteEmpleadoUpdated.next(this.respuestaDeleteEmpleado);
@@ -79,7 +79,7 @@ export class MainService {
 
   getEmpleados(id: { id: number }) {
     this.http
-      .post<Empleado[]>('http://localhost:3000/empleados', id)
+      .post<Empleado[]>('http://localhost:3000/empleado/empleados', id)
       .subscribe((response: Empleado[]) => {
         this.respuestaEmpleados = response;
         this.empleadosUpdated.next(this.respuestaEmpleados);
@@ -88,7 +88,7 @@ export class MainService {
 
   getOpiniones() {
     this.http
-      .get<Opinion[]>('http://localhost:3000/opiniones')
+      .get<Opinion[]>('http://localhost:3000/opinion/opiniones')
       .subscribe((response: Opinion[]) => {
         this.respuestaOpiniones = response;
         this.OpinionesUpdated.next(this.respuestaOpiniones);
@@ -97,7 +97,7 @@ export class MainService {
 
   getClientes() {
     this.http
-      .get<Cliente[]>('http://localhost:3000/clientes')
+      .get<Cliente[]>('http://localhost:3000/cliente/clientes')
       .subscribe((response: Cliente[]) => {
         this.respuestaClientes = response;
         this.ClientesUpdated.next(this.respuestaClientes);
@@ -106,7 +106,7 @@ export class MainService {
 
   setOpinion(opinion: Opinion) {
     this.http
-      .post<number>('http://localhost:3000/insertaOpinion', opinion)
+      .post<number>('http://localhost:3000/opinion/insertaOpinion', opinion)
       .subscribe((response: number) => {
         this.respuestaOpinion = response;
         this.OpinionUpdated.next(this.respuestaOpinion);
@@ -120,7 +120,7 @@ export class MainService {
     apellido2: string;
   }) {
     this.http
-      .post<boolean>('http://localhost:3000/insercion_cliente', cliente)
+      .post<boolean>('http://localhost:3000/cliente/insercion_cliente', cliente)
       .subscribe((responseData: boolean) => {
         this.respuestaCliente = responseData;
         this.clienteUpdated.next(this.respuestaCliente);
@@ -129,7 +129,7 @@ export class MainService {
 
   compruebaDni(dni: { envio: string }) {
     this.http
-      .post<boolean>('http://localhost:3000/comprobacion_dni', dni)
+      .post<boolean>('http://localhost:3000/cliente/comprobacion_dni', dni)
       .subscribe((responseData: boolean) => {
         this.respuestaDni = responseData;
         this.dniUpdated.next(this.respuestaDni);
