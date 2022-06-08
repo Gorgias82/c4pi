@@ -8,9 +8,9 @@ USE c4pi;
 
 DROP TABLE IF EXISTS c4pi.empleado;
 DROP TABLE IF EXISTS c4pi.cliente;
-DROP TABLE IF EXISTS c4pi.hotele;
+DROP TABLE IF EXISTS c4pi.hotel;
 DROP TABLE IF EXISTS c4pi.departamento;
-DROP TABLE IF EXISTS c4pi.opinione;
+DROP TABLE IF EXISTS c4pi.opinion;
 DROP TABLE IF EXISTS c4pi.estancia;
 
 CREATE TABLE c4pi.hotel
