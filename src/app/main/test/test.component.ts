@@ -74,6 +74,7 @@ export class TestComponent implements OnInit {
         numberValid = true;
       }
 
+      //se pone en true si no suman 3 entre las dos opciones
       error = value + valuePar.value !== 3;
       switch (number) {
         case '1':
@@ -113,6 +114,7 @@ export class TestComponent implements OnInit {
     const titulo = document.getElementsByTagName('mat-label')[indiceLinea];
     const titulo2 = document.getElementsByTagName('mat-label')[indice2];
     if (linea !== undefined && linea2 !== undefined) {
+      //si hay un error cambia la clase para que aparezca en rojo
       linea.className = error ? 'lineaIncorrecta' : 'lineaCorrecta';
       linea2.className = error ? 'lineaIncorrecta' : 'lineaCorrecta';
     }

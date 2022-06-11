@@ -3,19 +3,19 @@
 /* html, body { height: 100%; } */
 @font-face {
     font-family: "Trajan";
-    src: local("Trajan"), url(./assets/fonts/trajan/Trajans-Caps_Normal.ttf);
+    src: local("Trajan"), url(../assets/fonts/trajan/Trajans-Caps_Normal.ttf);
 }
 @font-face {
     font-family: "Centaur";
-    src: local("Centaur"), url(./assets/fonts/centaur/CentaurMTStd.ttf) format("truetype");
+    src: local("Centaur"), url(../assets/fonts/centaur/CentaurMTStd.ttf) format("truetype");
 }
 @font-face {
     font-family: "Futura";
-    src: local("Futura"), url(./assets/fonts/futura/futura_medium_condensed_bt.ttf) format("truetype");
+    src: local("Futura"), url(../assets/fonts/futura/futura_medium_condensed_bt.ttf) format("truetype");
 }
 @font-face {
     font-family: "Circus";
-    src: local("Circus"), url(./assets/fonts/circus/Circus.ttf) format("truetype");
+    src: local("Circus"), url(../assets/fonts/circus/Circus.ttf) format("truetype");
 }
 
 #palabras1, #palabras2{

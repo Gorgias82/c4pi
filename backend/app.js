@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-// const { expressCspHeader, INLINE, NONE, SELF } = require("express-csp-header");
 const app = express();
 var mysql = require("mysql");
 const http = require("http");
@@ -9,10 +8,8 @@ const departamentoRoutes = require("./routes/departamento.js");
 const empleadoRoutes = require("./routes/empleado.js");
 const hotelRoutes = require("./routes/hotel.js");
 const opinionRoutes = require("./routes/opinion.js");
+const path = require('node:path');
 require("dotenv").config();
-// const port = process.env.PORT || 3000;
-// app.set("port", port);
-// const server = http.createServer(app);
 
 const con = mysql.createPool({
   host: process.env.DB_HOST,
@@ -23,6 +20,7 @@ const con = mysql.createPool({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/", express.static(path.join(__dirname, "angular")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -42,6 +40,9 @@ app.use("/departamento", departamentoRoutes);
 app.use("/empleado", empleadoRoutes);
 app.use("/hotel", hotelRoutes);
 app.use("/opinion", opinionRoutes);
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "angular","index.html"));
+})
+
 module.exports = app;
 
-// server.listen(process.env.PORT || 3000);
