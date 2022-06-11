@@ -12,7 +12,7 @@ export class MainCardComponent implements OnInit {
   constructor(public loginService: LoginService, public router: Router) {}
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('id'));
+    
   }
 
   ngOnChanges(): void {}

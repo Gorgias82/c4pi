@@ -15,3 +15,4 @@ INSERT INTO departamento(nombre, id_hotel) VALUES('recepcion',4);
 INSERT INTO departamento(nombre, id_hotel) VALUES('recepcion',5);
 INSERT INTO departamento(nombre, id_hotel) VALUES('pisos',1);
 INSERT INTO departamento(nombre, id_hotel) VALUES('comercial',2);
+
