@@ -8,15 +8,15 @@ const departamentoRoutes = require("./routes/departamento.js");
 const empleadoRoutes = require("./routes/empleado.js");
 const hotelRoutes = require("./routes/hotel.js");
 const opinionRoutes = require("./routes/opinion.js");
-const path = require('node:path');
+const path = require("path");
 require("dotenv").config();
 
-const con = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
+// const con = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME,
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,8 +41,7 @@ app.use("/empleado", empleadoRoutes);
 app.use("/hotel", hotelRoutes);
 app.use("/opinion", opinionRoutes);
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "angular","index.html"));
-})
+  res.sendFile(path.join(__dirname, "angular", "index.html"));
+});
 
 module.exports = app;
-

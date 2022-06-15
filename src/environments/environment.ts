@@ -3,11 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  DefaultLanguage: "en",
+  DefaultLanguage: 'en',
   production: false,
   development: true,
-  environmentName:"DEV",
-  baseURL:"http://localhost:4200/home/login"
+  environmentName: 'DEV',
+  baseURL: 'http://localhost:4200/home/login',
+  apiURL: 'http://localhost:3000',
 };
 
 /*
